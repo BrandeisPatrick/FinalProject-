@@ -5,16 +5,15 @@ public class Checker {
 	public int x;
 	public int y;
 	public boolean color; // true = x; false = o
-	
-	public Checker() {
-		
-	}
+	public int number;
 
-	public Checker(int x,int y, boolean color) {
+	public Checker(int x,int y, boolean color, int number) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
+		this.number = number;
 	}
+
 
 	
 	public void Move(int x,int y) {
