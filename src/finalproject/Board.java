@@ -8,7 +8,7 @@ public class Board {
 				if(i%2 == 0) {
 					String s = "|   ";
 					System.out.printf("%s", s);
-				}
+				} 
 				else {
 					String s = "|___";
 					System.out.printf("%s", s);
