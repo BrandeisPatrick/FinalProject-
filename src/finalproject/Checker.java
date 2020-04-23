@@ -5,6 +5,10 @@ public class Checker {
 	public int x;
 	public int y;
 	public boolean color; // true = x; false = o
+	
+	public Checker() {
+		
+	}
 
 	public Checker(int x,int y, boolean color) {
 		this.x = x;
