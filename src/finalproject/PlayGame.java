@@ -7,6 +7,11 @@ public class PlayGame {
 		
 		Board board = new Board();
 		board.printBoard();
+		
+		Player player1 = new Player();
+		Player player2 = new Player();
+		
+		
 
 	}
 

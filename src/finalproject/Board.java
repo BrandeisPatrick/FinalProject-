@@ -12,8 +12,7 @@ public class Board {
 				else {
 					String s = "|___";
 					System.out.printf("%s", s);
-				}
-				
+				}	
 			}
 			if (i%2 == 0) {
 				System.out.println("|"+i/2);
@@ -24,5 +23,5 @@ public class Board {
 		}
 		System.out.printf("%s","   0   1   2   3   4   5   6   7");
 	}
-	
 }
+
