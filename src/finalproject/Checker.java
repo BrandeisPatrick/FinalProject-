@@ -25,4 +25,16 @@ public class Checker {
 			return "o";
 		}
 	}
+	
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
+	
+	public boolean getColor() {
+		return this.color;
+	}
 }
