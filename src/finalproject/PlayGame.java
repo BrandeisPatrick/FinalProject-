@@ -6,7 +6,7 @@ public class PlayGame {
 		// TODO Auto-generated method stub
 		
 		Board board = new Board();
-		board.printBoard();
+		System.out.print(board);
 		
 		Player player1 = new Player();
 		Player player2 = new Player();
