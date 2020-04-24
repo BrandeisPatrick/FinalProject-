@@ -6,12 +6,23 @@ public class Checker {
 	public int y;
 	public boolean color; // true = x; false = o
 	public int number;
+	public boolean terminated = false;
 
 	public Checker(int x,int y, boolean color, int number) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
 		this.number = number;
+		this.terminated = false;
+	}
+	
+	//default constructor
+	public Checker(boolean color) {
+		this.x = 0;
+		this.y = 0;
+		this.color = true; //x
+		this.number = 1;
+		this.terminated = false;
 	}
 
 

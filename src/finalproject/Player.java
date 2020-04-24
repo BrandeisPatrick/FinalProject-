@@ -1,25 +1,28 @@
 package finalproject;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Player {
 	public boolean color; //true = x false = o..
-	Checker[] checkers;
+	ArrayList<Checker> checkers;
 	
 	public Player(boolean color) {
-		int checkerSpotCounter = 0;
-		this.checkers = new Checker[12];
+		int checkerNum = 0;
+		this.checkers = new ArrayList<Checker>();
 		
 		if(color == true) { //player x
 			this.color = true;
 			for(int i = 1; i < 4; i++) {
 				if(i%2 != 0) {
 					for(int j = 1; j<= 7; j+=2) {
-						checkers[checkerSpotCounter] = new Checker(i-1, j, true, checkerSpotCounter+1);
-						checkerSpotCounter++;
+						checkers.add(new Checker(i-1, j, true, checkerNum +1));
+						checkerNum ++;
 					}
 				}else {
 					for(int j = 0; j<= 6; j+=2) {
-						checkers[checkerSpotCounter] = new Checker(i-1, j, true, checkerSpotCounter+1);
-						checkerSpotCounter++;
+						checkers.add(new Checker(i-1, j, true, checkerNum +1));
+						checkerNum ++;
 					}
 				}
 			}
@@ -28,13 +31,13 @@ public class Player {
 			for(int i = 5; i <= 7; i++) {
 				if(i%2 == 0) {
 					for(int j = 0; j<=6; j+=2) {
-						checkers[checkerSpotCounter] = new Checker(i,j, true, checkerSpotCounter+1);
-						checkerSpotCounter++;
+						checkers.add(new Checker(i,j, true, checkerNum +1));
+						checkerNum ++;
 					}
 				}else {
 					for(int j = 1; j<=7; j+=2) {
-						checkers[checkerSpotCounter] = new Checker(i,j, true, checkerSpotCounter+1);
-						checkerSpotCounter++;
+						checkers.add(new Checker(i,j, true, checkerNum +1));
+						checkerNum ++;
 					}
 				}
 			}
@@ -51,6 +54,8 @@ public class Player {
 		}
 	}
 	
+	
+	//testing code(static method)
 	public static void main(String[] args) {
 		Player pTrue = new Player(true);
 		Player pFalse = new Player(false);
@@ -59,5 +64,10 @@ public class Player {
 		pFalse.printPlayer();
 		
 	}
+	
+	public void tick(Scanner console) {
+
+		
 	}
+}
 
