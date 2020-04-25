@@ -33,9 +33,14 @@ public class Checker {
 		}else if(spotTaken(checkers, this)) {
 			System.out.println("That spot is taken");
 			return false;
-		}else{
-			return true;
+		}else if (!(this instanceof KingChecker)){
+			if((rowCoordinate == this.row + 1 && colCoordinate == this.col - 1) ||
+			(rowCoordinate == this.row + 1 && colCoordinate == this.col + 1)) {
+				System.out.println("This is a regular checker, it can't move backwards");
+				return false;
+			}
 		}
+		return true;
 	}
 	
 	//checks if a spot is already taken
