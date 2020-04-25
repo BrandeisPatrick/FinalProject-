@@ -93,4 +93,8 @@ public class Checker {
 	public boolean getColor() {
 		return this.color;
 	}
+	
+	public int getNumber() {
+		return this.number;
+	}
 }
