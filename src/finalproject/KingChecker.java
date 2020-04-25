@@ -3,11 +3,11 @@ package finalproject;
 public class KingChecker extends Checker {
 
 
-	public KingChecker() {
-		super();
+	public KingChecker(boolean color) {
+		super(color);
 	}
-	public KingChecker(int x, int y, boolean color) {
-		super(x,y,color);
+	public KingChecker(int row, int col, boolean color, int number) {
+		super(row,col,color, number);
 
 	}
 	

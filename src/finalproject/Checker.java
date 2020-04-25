@@ -2,34 +2,27 @@ package finalproject;
 
 public class Checker {
 	
-	public int x;
-	public int y;
+	public int row;
+	public int col;
 	public boolean color; // true = x; false = o
 	public int number;
-	public boolean terminated = false;
 
-	public Checker(int x,int y, boolean color, int number) {
-		this.x = x;
-		this.y = y;
+	public Checker(int row,int col, boolean color, int number) {
+		this.row = col;
+		this.row = col;
 		this.color = color;
 		this.number = number;
-		this.terminated = false;
-	}
-	
-	//default constructor
-	public Checker(boolean color) {
-		this.x = 0;
-		this.y = 0;
-		this.color = true; //x
-		this.number = 1;
-		this.terminated = false;
 	}
 
 
 	
-	public void Move(int x,int y) {
-		this.x = x;
-		this.y = y;
+	public void Move(int row,int col) {
+		this.row = row;
+		this.col = col;
+	}
+	
+	public boolean canMove() {
+		
 	}
 	
 	public String toString(){
@@ -40,12 +33,12 @@ public class Checker {
 		}
 	}
 	
-	public int getX() {
-		return this.x;
+	public int getRow() {
+		return this.row;
 	}
 	
-	public int getY() {
-		return this.y;
+	public int getCol() {
+		return this.col;
 	}
 	
 	public boolean getColor() {

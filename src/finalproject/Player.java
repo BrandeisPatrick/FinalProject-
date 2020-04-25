@@ -1,6 +1,5 @@
 package finalproject;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Player {
@@ -10,10 +9,13 @@ public class Player {
 	public Player(boolean color) {
 		int checkerNum = 0;
 		this.checkers = new ArrayList<Checker>();
-		
+		setCheckers(color, checkers, checkerNum);
+	}
+	
+	public void setCheckers(boolean color, ArrayList<Checker> checkers, int checkerNum) {
 		if(color == true) { //player x
 			this.color = true;
-			for(int i = 1; i < 4; i++) {
+			for(int i = 1; i < 4; i++) { //iterates through three rows
 				if(i%2 != 0) {
 					for(int j = 1; j<= 7; j+=2) {
 						checkers.add(new Checker(i-1, j, true, checkerNum +1));
@@ -43,14 +45,13 @@ public class Player {
 			}
 			
 		}
-
-			
-		
 	}
+	
+
 	
 	public void printPlayer() {
 		for(Checker c : checkers) {
-			System.out.println( "(" + c.getX() + "," + c.getY() + ")");
+			System.out.println( "(" + c.getRow() + "," + c.getCol() + ")");
 		}
 	}
 	
@@ -69,5 +70,6 @@ public class Player {
 
 		
 	}
+	
 }
 
