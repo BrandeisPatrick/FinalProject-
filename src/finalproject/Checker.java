@@ -40,6 +40,10 @@ public class Checker {
 		}else if(spotTaken(checkers, this.getX(), this.getY())) {
 			System.out.println("That spot is taken");
 			return false;
+		}else if ((ateEnemyChecker() == false) &&
+				 ((Math.abs(xCoordinate - this.x) > 1) || (Math.abs(yCoordinate - this.y) > 1)) ){
+			System.out.println("Invalid move, you can't move more than one spot without eating an enemy checker");
+			return false;
 		}else {
 			return true;
 		}

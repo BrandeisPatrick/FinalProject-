@@ -16,14 +16,19 @@ public class KingChecker extends Checker {
 			if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
 				System.out.println("The Coordinates you entered are out of bounds");
 				return false;
-			}else if((xCoordinate == this.x && yCoordinate == this.y + 1)||
+			}else if(xCoordinate == this.x || yCoordinate == this.y )
+					/**((xCoordinate == this.x && yCoordinate == this.y + 1)||
 					(xCoordinate == this.x && yCoordinate == this.y - 1) ||
 					(xCoordinate == this.x + 1 && yCoordinate == this.y) ||
-					(xCoordinate == this.x - 1 && yCoordinate == this.y)) {
+					(xCoordinate == this.x - 1 && yCoordinate == this.y)) */{
 				System.out.println("That's an invalid move, you can only move diagonally");
 				return false;
 			}else if(spotTaken(checkers, this.getX(), this.getY())) {
 				System.out.println("That spot is taken");
+				return false;
+			}else if ((ateEnemyChecker() == false) &&
+					 ((Math.abs(xCoordinate - this.x) > 1) || (Math.abs(yCoordinate - this.y) > 1)) ){
+				System.out.println("Invalid move, you can't move more than one spot without eating an enemy checker");
 				return false;
 			}else {
 				return true;
