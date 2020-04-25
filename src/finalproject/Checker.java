@@ -3,41 +3,41 @@ import java.util.ArrayList;
 
 public class Checker {
 	
-	public int row;
-	public int col;
+	public int x;
+	public int y;
 	public boolean color; // true = x; false = o
 	public int number;
 
-	public Checker(int row,int col, boolean color, int number) {
-		this.row = col;
-		this.row = col;
+	public Checker(int x,int y, boolean color, int number) {
+		this.x = x;
+		this.y = y;
 		this.color = color;
 		this.number = number;
 	}
 
 
 	
-	public void Move(int row,int col) {
-		this.row = row;
-		this.col = col;
+	public void Move(int x,int y) {
+		this.x = x;
+		this.y = y;
 	}
 	
 	//checks if the checker can move to that spot
-	public boolean canMove(int rowCoordinate, int colCoordinate, ArrayList<Checker> checkers) { //coordinates player is trying to move to
-		if(rowCoordinate < 1 || rowCoordinate > 8 || colCoordinate < 1 || colCoordinate > 8) {
+	public boolean canMove(int xCoordinate, int yCoordinate, ArrayList<Checker> checkers) { //coordinates player is trying to move to
+		if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
 			System.out.println("The Coordinates you entered are out of bounds");
 			return false;
-		}else if((rowCoordinate == this.row && colCoordinate == this.col + 1)||
-				(rowCoordinate == this.row && colCoordinate == this.col - 1) ||
-				(rowCoordinate == this.row + 1 && colCoordinate == this.col) ||
-				(rowCoordinate == this.row - 1 && colCoordinate == this.col)) {
+		}else if((xCoordinate == this.x && yCoordinate == this.y + 1)||
+				(xCoordinate == this.x && yCoordinate == this.y - 1) ||
+				(xCoordinate == this.x + 1 && yCoordinate == this.y) ||
+				(xCoordinate == this.x - 1 && yCoordinate == this.y)) {
 			System.out.println("That's an invalid move, you can only move diagonally");
 			return false;
-		}else if((rowCoordinate == this.row + 1 && colCoordinate == this.col - 1) ||
-				(rowCoordinate == this.row + 1 && colCoordinate == this.col + 1)) {
-			System.out.println("Invalid move, you cant move backwards as a regualr checker");
+		}else if((xCoordinate == this.x + 1 && yCoordinate == this.y - 1) ||
+				(xCoordinate == this.x + 1 && yCoordinate == this.y + 1)) {
+			System.out.println("Invalid move, you cant move backwards as a regualar checker");
 			return false;
-		}else if(spotTaken(checkers, this.getRow(), this.getCol())) {
+		}else if(spotTaken(checkers, this.getX(), this.getY())) {
 			System.out.println("That spot is taken");
 			return false;
 		}else {
@@ -47,10 +47,10 @@ public class Checker {
 	
 	
 	//checks if a spot is already taken
-	public boolean spotTaken(ArrayList<Checker> checkers, int rowCoordinate, int colCoordinate) {
+	public boolean spotTaken(ArrayList<Checker> checkers, int xCoordinate, int yCoordinate) {
 		for(int i = 0; i < checkers.size(); i++) {
-			if(checkers.get(i).getRow() == rowCoordinate &&
-			   checkers.get(i).getCol() == colCoordinate) {
+			if(checkers.get(i).getX() == xCoordinate &&
+			   checkers.get(i).getY() == yCoordinate) {
 				return true;
 			}
 		}
@@ -58,15 +58,15 @@ public class Checker {
 	}
 	
 	//checks if the checker jumped over an enemy checker
-	public boolean ateEnemyChecker(ArrayList<Checker> checkers, Checker checker, int rowCoordinate, int colCoordinate) {
-		if(rowCoordinate == checker.getRow() + 2 && colCoordinate == checker.getCol() + 2) {
-			if(spotTaken(checkers, checker.getRow() + 1, checker.getCol() + 1) && checkers.get){
+	public boolean ateEnemyChecker(ArrayList<Checker> checkers, Checker checker, int xCoordinate, int yCoordinate) {
+		if(xCoordinate == checker.getX() + 2 && yCoordinate == checker.getY() + 2) {
+			if(spotTaken(checkers, checker.getX() + 1, checker.getY() + 1) && checkers.get){
 				
 			}
 		}
-			(rowCoordinate == checker.getRow() + 2 && colCoordinate == checker.getCol() - 2) ||
-			(rowCoordinate == checker.getRow() - 2 && colCoordinate == checker.getCol() + 2) ||
-			(rowCoordinate == checker.getRow() - 2 && colCoordinate == checker.getCol() - 2)) {
+			(xCoordinate == checker.getX() + 2 && yCoordinate == checker.getY() - 2) ||
+			(xCoordinate == checker.getX() - 2 && yCoordinate == checker.getY() + 2) ||
+			(xCoordinate == checker.getX() - 2 && yCoordinate == checker.getY() - 2)) {
 	}
 	
 	
@@ -79,15 +79,15 @@ public class Checker {
 	}
 	
 	public String printCoordinates() {
-		return("(" + this.row + ", "+ this.col + ")");
+		return("(" + this.x + ", "+ this.y + ")");
 	}
 	
-	public int getRow() {
-		return this.row;
+	public int getX() {
+		return this.y;
 	}
 	
-	public int getCol() {
-		return this.col;
+	public int getY() {
+		return this.y;
 	}
 	
 	public boolean getColor() {

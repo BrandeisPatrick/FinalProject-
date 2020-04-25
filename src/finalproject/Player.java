@@ -51,7 +51,7 @@ public class Player {
 	
 	public void printPlayer() {
 		for(Checker c : checkers) {
-			System.out.println( "(" + c.getRow() + "," + c.getCol() + ")");
+			System.out.println( "(" + c.getX() + "," + c.getY() + ")");
 		}
 	}
 	
