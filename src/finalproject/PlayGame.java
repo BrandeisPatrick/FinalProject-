@@ -15,6 +15,16 @@ public class PlayGame {
 		Player player1 = new Player(true);
 		Player player2 = new Player(false);
 		
+		for(int i = 0; i < player1.checkers.size(); i++ ) {
+			board.setChecker(player1.checkers.get(i));
+		}
+		
+		for(int i = 0; i < player2.checkers.size(); i++ ) {
+			board.setChecker(player2.checkers.get(i));
+		}
+		
+		board.printCheckersInUse();
+		
 		player1.tick(console);
 		
 		

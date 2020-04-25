@@ -1,13 +1,20 @@
 package finalproject;
+import java.util.ArrayList;
 
 public class Board {
 
 	public char[][] board;
+	public ArrayList<Checker> checkersInUse;
 
 
 	public Board() {
-		board = new char[9][9];
+		this.board = new char[9][9];
+		this.checkersInUse = new ArrayList<Checker>();
 		setHeader();
+	}
+
+	public void setChecker(Checker checker) {
+		checkersInUse.add(checker);
 	}
 
 	public void setHeader(){
@@ -40,6 +47,14 @@ public class Board {
 		return output;
 	}
 
+	public void printCheckersInUse() {
+		System.out.print("[(" + checkersInUse.get(0).printCoordinates());
+		for(int i = 1; i < checkersInUse.size(); i++) {
+			System.out.print(", " + checkersInUse.get(i).printCoordinates());
+		}
+		System.out.println("]");
+	}
+	
 	public static void main(String[] args){
 		Board board = new Board();
 		System.out.print(board);
