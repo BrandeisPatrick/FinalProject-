@@ -1,4 +1,5 @@
 package finalproject;
+import java.util.ArrayList;
 
 public class Checker {
 	
@@ -21,9 +22,33 @@ public class Checker {
 		this.col = col;
 	}
 	
-	public boolean canMove() {
-		
+	//checks if the checker can move to that spot
+	public boolean canMove(int rowCoordinate, int colCoordinate, ArrayList<Checker> checkers) { //coordinates player is trying to move to
+		if((rowCoordinate == this.row && colCoordinate == this.col + 1) ||
+		   (rowCoordinate == this.row && colCoordinate == this.col - 1) ||
+		   (rowCoordinate == this.row + 1 && colCoordinate == this.col) ||
+		   (rowCoordinate == this.row - 1 && colCoordinate == this.col)) {
+			System.out.println("That's an invalid move");
+			return false;
+		}else if(spotTaken(checkers, this)) {
+			System.out.println("That spot is taken");
+			return false;
+		}else{
+			return true;
+		}
 	}
+	
+	//checks if a spot is already taken
+	public boolean spotTaken(ArrayList<Checker> checkers, Checker checker) {
+		for(int i = 0; i < checkers.size(); i++) {
+			if(checkers.get(i).getRow() == checker.getRow() &&
+			   checkers.get(i).getCol() == checker.getCol()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	public String toString(){
 		if (color) {
