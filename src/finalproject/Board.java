@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class Board {
 
-	public static char RED = '\u25A0';
-	public static char BLACK = '\u25A1';
 	public static String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 
 	public Square[][] board;
@@ -15,9 +13,19 @@ public class Board {
 	public Player player2;
 
 	public Board() {
-		this.board = new Square[8][8];
 		this.checkersInUse = new ArrayList<Checker>();
+		setBoard();
 		setPlayer();
+	}
+
+	//create board and give each Square coordinates
+	public void setBoard() {
+		this.board = new Square[8][8];
+		for(int i = 1; i <= 8; i++){  	  // vertical
+			for(int j = 1; j <= 8; j++){  // horizontal
+				this.board[i][j].setCoordinates(j,i);
+			}
+		}
 	}
 
 	//distribute the players
@@ -41,7 +49,6 @@ public class Board {
 			int y = checker.y;
 			board[x][y].setChecker(checker);
 		}
-
 	}
 
 	public void tick(){
@@ -65,7 +72,7 @@ public class Board {
 		output.append("\n");
 		return output.toString();
 	}
-
+/**
 	public void printCheckersInUse() {
 		System.out.print("[(" + checkersInUse.get(0).printCoordinates());
 		for(int i = 1; i < checkersInUse.size(); i++) {
@@ -73,7 +80,7 @@ public class Board {
 		}
 		System.out.println("]");
 	}
-	
+ */
 	public static void main(String[] args){
 		Board board = new Board();
 		System.out.print(board);
