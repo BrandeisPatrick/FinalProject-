@@ -1,20 +1,36 @@
 package finalproject;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Board {
 
 	public static char RED = '\u25A0';
-	public static char BLACK = '\u25A1'; //Inspired from Koolgee0's code https://github.com/Koolgee0/CheckerGame.git
+	public static char BLACK = '\u25A1';
 	public static String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 
 	public Square[][] board;
 	public ArrayList<Checker> checkersInUse;
-
+	public Player player1;
+	public Player player2;
 
 	public Board() {
 		this.board = new Square[8][8];
 		this.checkersInUse = new ArrayList<Checker>();
+		setPlayer();
+	}
+
+	//distribute the players
+	public void setPlayer() {
+		System.out.println("Would you like to be red (X) ? (please reply yes or no)");
+		Scanner sc = new Scanner(System.in);
+		String str  = sc.next();
+		while(!str.equals("yes") && !str.equals("no")){
+			System.out.println("Please give a valid answer.");
+			str  = sc.next();
+		}
+		this.player1 = new Player(str.equals("yes"));
+		this.player2 = new Player(!str.equals("yes"));
 	}
 
 	public void fillBoard(){
@@ -25,6 +41,7 @@ public class Board {
 			int y = checker.y;
 			board[x][y].setChecker(checker);
 		}
+
 	}
 
 	public void tick(){
