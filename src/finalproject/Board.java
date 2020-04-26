@@ -28,9 +28,18 @@ public class Board {
 		}
 	}
 
+	//print header method
+	public void printHeader(){
+		System.out.println("This is checker game for two people;");
+		System.out.println("Player 1 (red) will move first;");
+		System.out.println("Player 2 (black) will move after Player 1;");
+		System.out.println("red checkers will be represented as (X)");
+		System.out.println("black checkers will be represented as (O)");
+	}
+
 	//distribute the players
 	public void setPlayer() {
-		System.out.println("Would you like to be red (X) ? (please reply yes or no)");
+		System.out.println("Would you like to be Player 1 ? (please reply yes or no)");
 		Scanner sc = new Scanner(System.in);
 		String str  = sc.next();
 		while(!str.equals("yes") && !str.equals("no")){
@@ -49,6 +58,10 @@ public class Board {
 			int y = checker.y;
 			board[x][y].setChecker(checker);
 		}
+	}
+
+	public void eachTurn(){
+
 	}
 
 	public void tick(){
