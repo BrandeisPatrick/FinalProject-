@@ -235,7 +235,7 @@ public class Checker {
 	}
 	
 	public int getX() {
-		return this.y;
+		return this.x;
 	}
 	
 	public int getY() {
