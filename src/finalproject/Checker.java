@@ -24,11 +24,7 @@ public class Checker {
 	//checks if the checker can move to that spot 
 	//coordinates are those that the player is trying to move to, the array is the array of ALL checkers on the board
 	public boolean canMove(Board board, int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) { 
-		if(isEnemyChecker(board, xCoordinate, yCoordinate) == true) {
-			System.out.println("You cannot move the oppponent's checkers");
-			return false; 
-		}
-		else if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
+		if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
 			System.out.println("The Coordinates you entered are out of bounds");
 			return false;
 			//tests if the move was backwards
