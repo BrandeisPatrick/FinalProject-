@@ -148,9 +148,13 @@ public class Checker {
 	//checks to see if a zig zag move is valid
 	public boolean zigzagMoveValid(ArrayList<Checker> checkersInUse, Board board, int xCoordinate, int yCoordinate,
 		int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
-		if((doubleMoveValid(checkersInUse, board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12) )|| 
-			(doubleMoveValid(checkersInUse, board, xPt3, yPt3, xPt4, yPt4, xMiddlePt34, yMiddlePt34))) {
-				
+		if(doubleMoveValid(checkersInUse, board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
+			removeChecker(checkersInUse, board, xPt1, yPt1);
+			removeChecker(checkersInUse, board, xPt2, yPt2);
+			return true;
+		}else if(doubleMoveValid(checkersInUse, board, xPt3, yPt3, xPt4, yPt4, xMiddlePt34, yMiddlePt34)) {
+			removeChecker(checkersInUse, board, xPt3, yPt3);
+			removeChecker(checkersInUse, board, xPt4, yPt4);
 			//valid move
 			return true;
 		}else {
@@ -161,9 +165,10 @@ public class Checker {
 	
 	//checks if a single jump move is valid
 	public boolean singleMoveValid(Board board, ArrayList<Checker> checkersInUse, int xCoordinate, int yCoordinate, 
-			int originalxCoordinate, int orgininalyCoordinate) {
-			if(spotOpen(checkersInUse, xCoordinate, yCoordinate) && isEnemyChecker(board, originalxCoordinate - 1, orgininalyCoordinate - 1)) {
+			int originalxCoordinate, int originalyCoordinate) {
+			if(spotOpen(checkersInUse, xCoordinate, yCoordinate) && isEnemyChecker(board, originalxCoordinate - 1, originalyCoordinate - 1)) {
 				//valid move
+				removeChecker(checkersInUse, board, originalxCoordinate - 1, originalyCoordinate - 1);
 				return true;
 				}else {
 					System.out.println("Not a valid move");
@@ -175,7 +180,8 @@ public class Checker {
 		public boolean doubleMoveValid(ArrayList<Checker> checkersInUse, Board board, int xCoordinate, int yCoordinate,
 			int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12){
 			if(doubleMoveValid(checkersInUse, board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
-					
+				removeChecker(checkersInUse, board, xPt1, yPt1);
+				removeChecker(checkersInUse, board, xPt2, yPt2);
 				//valid move
 				return true;
 			}else {
