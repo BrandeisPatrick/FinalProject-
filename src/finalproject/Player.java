@@ -55,28 +55,7 @@ public class Player {
 		}
 	}
 	
-	//Checks if the Checker has reached the opposite side
-	//Adds a new KingChecker and removes Checker if it has
-	public void checkForKing() {
-		if (color == true) {
-			for(Checker c : checkers) {
-				if (c.getX() == 8) {
-					KingChecker newChecker = new KingChecker(c.getX(), c.getY(), true, c.getNumber());
-					checkers.add(newChecker);
-					checkers.remove(c);
-				}
-			}
-		}
-		else {
-			for(Checker c : checkers) {
-				if(c.getX() == 1) {
-					KingChecker newChecker = new KingChecker(c.getX(), c.getY(), false, c.getNumber());
-					checkers.add(newChecker);
-					checkers.remove(c);
-				}
-			}
-		}
-	}
+
 	
 	
 	//testing code(static method)

@@ -184,7 +184,38 @@ public class Checker {
 			}
 		}
 
-	
+	//Removes enemy checker that has been eaten
+		public void removeChecker(ArrayList<Checker> checkersInUse, Board board, int enemyxCoordinate, int enemyyCoordinate) {
+			for(Checker c : checkersInUse) {
+				if(c.getX() == enemyxCoordinate) {
+					if(c.getY() == enemyyCoordinate) {
+						checkersInUse.remove(c);
+					}
+				}
+			}
+		}
+		
+	//Checks if the Checker has reached the opposite side
+	//Adds a new KingChecker and removes Checker if it has
+		public void checkForKing(ArrayList<Checker> checkersInUse, Board board) {
+			for (Checker c : checkersInUse) {
+				if(c.getColor() == true) {
+					if (c.getX() == 8) {
+						KingChecker newChecker = new KingChecker(c.getX(), c.getY(), true, c.getNumber());
+						checkersInUse.add(newChecker);
+						checkersInUse.remove(c);
+					}
+				}
+				else {
+					if(c.getX() == 1) {
+						KingChecker newChecker = new KingChecker(c.getX(), c.getY(), false, c.getNumber());
+						checkersInUse.add(newChecker);
+						checkersInUse.remove(c);
+					}
+				}
+			}
+		}
+		
 	public String toString(){
 		if (color) {
 			return "x";
