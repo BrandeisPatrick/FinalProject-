@@ -64,15 +64,25 @@ public class Board {
 		System.out.println("]");
 	}
  */
-	//finds a checker with certain coordinates if it exists
+	//finds a checker with certain coordinates if it exists, given coordinates
 	public Checker findChecker(int xCoordinate, int yCoordinate) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
-			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getX()) {
+			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
 				return checkersInUse.get(i);
 			}
 		}
 		return null;
 	}
+	
+	//finds a checker with certain coordinates if it exists, given a checker
+		public Checker findChecker(Checker checker) {
+			for(int i = 0; i < this.checkersInUse.size(); i++) {
+				if(checker.getX() == checkersInUse.get(i).getX() && checker.getY() == checkersInUse.get(i).getY()) {
+					return checkersInUse.get(i);
+				}
+			}
+			return null;
+		}
 
 	public static void main(String[] args){
 		Board board = new Board();
