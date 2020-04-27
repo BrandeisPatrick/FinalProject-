@@ -5,13 +5,10 @@ import java.util.ArrayList;
 public class PlayGame {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		Scanner console = new Scanner(System.in);
-		
-		Board board = new Board();
-		System.out.print(board);
 
+		Simlulation sim = new Simlulation();
+		sim.tick();
+		System.out.println(sim);
 
 
 	/**

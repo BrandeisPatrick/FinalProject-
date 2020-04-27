@@ -23,7 +23,7 @@ public class Player {
 	public void setLetterToInt() {
 		this.letterToInt = new HashMap<String,Integer>();
 		for(int i = 1; i <= 8; i++){
-			letterToInt.put(this.letters[i],i);
+			letterToInt.put(this.letters[i-1],i);
 		}
 	}
 
