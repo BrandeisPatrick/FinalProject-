@@ -20,6 +20,7 @@ public class Board {
 		this.board = new Square[8][8];
 		for(int i = 1; i <= 8; i++){  	  // vertical
 			for(int j = 1; j <= 8; j++){  // horizontal
+				this.board[i-1][j-1] = new Square();
 				this.board[i-1][j-1].setCoordinates(j,i);
 			}
 		}
@@ -46,9 +47,10 @@ public class Board {
 				if (board[i][j].getChecker() != null) {
 					output.append(board[i][j].getChecker().toString());
 				} else {
-					output.append(board[i][j].getColor()).append(" ");
+					output.append(board[i][j].toString()).append(" ");
 				}
 			}
+			output.append("\n");
 		}
 		output.append("\n");
 		return output.toString();

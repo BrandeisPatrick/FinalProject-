@@ -7,6 +7,7 @@ public class PlayGame {
 	public static void main(String[] args) {
 
 		Simlulation sim = new Simlulation();
+		System.out.println(sim);
 		sim.tick();
 		System.out.println(sim);
 

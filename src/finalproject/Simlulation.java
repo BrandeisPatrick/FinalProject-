@@ -27,6 +27,11 @@ public class Simlulation {
             System.out.println("Please give a valid answer.");
             str  = sc.next();
         }
+        if(str.equals("yes")){
+            System.out.println("The other Player will be Player 2");
+        }else{
+            System.out.println("The other Player will be Player 2");
+        }
         this.player1 = new Player(str.equals("yes"));
         this.player2 = new Player(!str.equals("yes"));
     }
