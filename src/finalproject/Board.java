@@ -94,6 +94,18 @@ public class Board {
 		System.out.println("]");
 	}
  */
+	
+	//finds a checker with certain coordinates if it exists
+	public Checker findChecker(int xCoordinate, int yCoordinate) {
+		for(int i = 0; i < this.checkersInUse.size(); i++) {
+			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getX()) {
+				return checkersInUse.get(i);
+			}
+		}
+		return null;
+	}
+	
+	
 	public static void main(String[] args){
 		Board board = new Board();
 		System.out.print(board);
