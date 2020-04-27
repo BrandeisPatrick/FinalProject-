@@ -15,6 +15,7 @@ public class Player {
 	
 	public Player(boolean color) {
 		int checkerNum = 0;
+		this.color = color;
 		this.checkers = new ArrayList<Checker>();
 		setCheckers(color, checkers, checkerNum);
 		setLetterToInt();
@@ -130,6 +131,16 @@ public class Player {
 			}
 		}
 		return null;
+	}
+	
+	public boolean isMyChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
+		Checker c = findChecker(xCoordinate, yCoordinate, checkersInUse);
+		if(c.getColor() == this.color) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 }
