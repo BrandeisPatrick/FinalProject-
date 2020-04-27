@@ -64,7 +64,7 @@ public class Board {
 		System.out.println("]");
 	}
  */
-	//finds a checker with certain coordinates if it exists
+	//finds a checker with certain coordinates if it exists, given coordinates
 	public Checker findChecker(int xCoordinate, int yCoordinate) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
 			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
