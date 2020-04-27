@@ -11,12 +11,15 @@ public class PlayGame {
 		
 		Board board = new Board();
 		System.out.print(board);
-		
+
+
+
+	/**
 		Player player1 = new Player(true);
 		Player player2 = new Player(false);
-		
+
 		System.out.println(player1.checkers.get(0).canMove(board, 4, 5, board.checkersInUse));
-		
+	*/
 		/*
 		for(int i = 0; i < player1.checkers.size(); i++ ) {
 			board.setChecker(player1.checkers.get(i));

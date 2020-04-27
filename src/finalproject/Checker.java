@@ -16,7 +16,7 @@ public class Checker {
 	}
 
 	
-	public void Move(int x,int y) {
+	public void move(int x,int y) {
 		this.x = x;
 		this.y = y;
 	}

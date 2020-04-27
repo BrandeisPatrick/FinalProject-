@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Board {
 
-	public static String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+	public String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 
 	public Square[][] board;
 	public ArrayList<Checker> checkersInUse;
@@ -26,15 +26,7 @@ public class Board {
 				this.board[i][j].setCoordinates(j,i);
 			}
 		}
-	}
-
-	//print header method
-	public void printHeader(){
-		System.out.println("This is checker game for two people;");
-		System.out.println("Player 1 (red) will move first;");
-		System.out.println("Player 2 (black) will move after Player 1;");
-		System.out.println("red checkers will be represented as (X)");
-		System.out.println("black checkers will be represented as (O)");
+		fillBoard();
 	}
 
 	//distribute the players
@@ -60,13 +52,25 @@ public class Board {
 		}
 	}
 
-	public void eachTurn(){
-
-	}
-
 	public void tick(){
-		fillBoard();
+		player1.tick(this.checkersInUse, this.board);
+		player2.tick(this.checkersInUse, this.board);
+		setBoard();
+		System.out.println(board);
 	}
+
+	//print header method
+	public void printHeader(){
+		System.out.println("This is checker game for two people;");
+		System.out.println("Player 1 (red) will move first;");
+		System.out.println("Player 2 (black) will move after Player 1;");
+		System.out.println("red checkers will be represented as (X)");
+		System.out.println("black checkers will be represented as (O)");
+		System.out.println("In each move, select a checker by giving a coordinate;");
+		System.out.println("then give the destination coordinate, separated by a space");
+		System.out.println("For example E1 checker move to E2 position is \"E1 E2\"");
+	}
+
 
 	//Inspired from Koolgee0's code to print A B E C E D on one side of the board
 	public String toString() {
