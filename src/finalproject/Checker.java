@@ -212,4 +212,6 @@ public class Checker {
 	public int getNumber() {
 		return this.number;
 	}
+	
+	
 }
