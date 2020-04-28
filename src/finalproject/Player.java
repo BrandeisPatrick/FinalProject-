@@ -20,6 +20,11 @@ public class Player {
 		setLetterToInt();
 	}
 
+	public Player() {
+		this.color = true;
+		this.checkers = new ArrayList<Checker>();
+	}
+	
 	public void setLetterToInt() {
 		this.letterToInt = new HashMap<String,Integer>();
 		for(int i = 1; i <= 8; i++){
@@ -130,6 +135,30 @@ public class Player {
 			}
 		}
 		return null;
+	}
+	
+	public boolean isEnemyColor(Checker checker) {
+		if(checker.getColor() == this.color) {
+			return false;
+		}
+		return true;
+	}
+	
+	//checks if its a backwards move based on what the color field of the player is
+	public boolean moveBackwards(int targetY, int originalY) {
+		if (this.color) { //true = x, false = o
+			if((originalY - targetY) > 0) {
+				return true;
+			}else {
+				return false;
+			}
+		}else{
+			if((originalY - targetY) < 0) {
+				return true;
+			}else {
+				return false;
+			}
+		}
 	}
 	
 }

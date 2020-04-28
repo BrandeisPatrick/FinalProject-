@@ -83,6 +83,50 @@ public class Board {
 			}
 			return null;
 		}
+		
+		//checks if a spot is already taken or it's open
+		public boolean spotOpen(int xCoordinate, int yCoordinate) {
+			for(int i = 0; i < this.checkersInUse.size(); i++) {
+				if(this.checkersInUse.get(i).getX() == xCoordinate &&
+				   this.checkersInUse.get(i).getY() == yCoordinate) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		//Removes enemy checker that has been eaten
+				public void removeChecker(int enemyxCoordinate, int enemyyCoordinate) {
+					for(Checker c : this.checkersInUse) {
+						if(c.getX() == enemyxCoordinate) {
+							if(c.getY() == enemyyCoordinate) {
+								this.checkersInUse.remove(c);
+							}
+						}
+					}
+				}
+				
+			//Checks if the Checker has reached the opposite side
+			//Adds a new KingChecker and removes Checker if it has
+				public void checkForKing() {
+					for (Checker c : this.checkersInUse) {
+						if(c.getColor() == true) {
+							if (c.getX() == 8) {
+								KingChecker newChecker = new KingChecker(c.getX(), c.getY(), true, c.getNumber());
+								this.checkersInUse.add(newChecker);
+								this.checkersInUse.remove(c);
+							}
+						}
+						else {
+							if(c.getX() == 1) {
+								KingChecker newChecker = new KingChecker(c.getX(), c.getY(), false, c.getNumber());
+								this.checkersInUse.add(newChecker);
+								this.checkersInUse.remove(c);
+							}
+						}
+					}
+				}
+		
 
 	public static void main(String[] args){
 		Board board = new Board();
