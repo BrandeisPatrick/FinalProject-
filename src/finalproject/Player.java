@@ -17,6 +17,7 @@ public class Player {
 		int checkerNum = 0;
 		this.color = color;
 		this.checkers = new ArrayList<Checker>();
+		setCheckers(color, checkers, checkerNum);
 		setLetterToInt();
 	}
 
@@ -27,7 +28,40 @@ public class Player {
 		}
 	}
 
-	
+	public void setCheckers(boolean color, ArrayList<Checker> checkers, int checkerNum) {
+		if(color == true) { //player x
+			this.color = true;
+			for(int i = 1; i < 4; i++) { //iterates through three rows
+				if(i%2 != 0) {
+					for(int j = 1; j<= 7; j+=2) {
+						checkers.add(new Checker(i-1, j, true, checkerNum +1));
+						checkerNum ++;
+					}
+				}else {
+					for(int j = 0; j<= 6; j+=2) {
+						checkers.add(new Checker(i-1, j, true, checkerNum +1));
+						checkerNum ++;
+					}
+				}
+			}
+		}else{
+			this.color = false;
+			for(int i = 5; i <= 7; i++) {
+				if(i%2 == 0) {
+					for(int j = 0; j<=6; j+=2) {
+						checkers.add(new Checker(i,j, true, checkerNum +1));
+						checkerNum ++;
+					}
+				}else {
+					for(int j = 1; j<=7; j+=2) {
+						checkers.add(new Checker(i,j, true, checkerNum +1));
+						checkerNum ++;
+					}
+				}
+			}
+			
+		}
+	}
 	
 
 	
@@ -36,6 +70,9 @@ public class Player {
 			System.out.println( "(" + c.getX() + "," + c.getY() + ")");
 		}
 	}
+	
+
+	
 	
 	//testing code(static method)
 	public static void main(String[] args) {
@@ -64,8 +101,7 @@ public class Player {
 		int fy = letterToInt.get(destination.substring(0,1));
 		int fx = Integer.parseInt(destination.substring(1));
 
-		while(findChecker(ix, iy, checkersInUse) == null
-				|| !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
+		while(findChecker(ix, iy, checkersInUse) == null || findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse) == false){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move ");
@@ -89,13 +125,11 @@ public class Player {
 
 
 	public Checker findChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
-		System.out.println("debug");
 		for(int i = 0; i < checkersInUse.size(); i++) {
-			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getX()) {
+			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
 				return checkersInUse.get(i);
 			}
 		}
-		System.out.println("null point");
 		return null;
 	}
 	
