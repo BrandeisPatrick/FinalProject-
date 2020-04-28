@@ -16,7 +16,7 @@ public class Board {
 
 	}
 
-	//create board and give each Square coordinates
+	//create board and give each Square coordinates...
 	public void setBoard() {
 		this.board = new Square[8][8];
 		for(int i = 1; i <= 8; i++){  	  // vertical
