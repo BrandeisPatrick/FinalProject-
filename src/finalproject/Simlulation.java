@@ -7,7 +7,7 @@ public class Simlulation {
     public Board board;
 
     public Simlulation() {
-    	printHeader();
+    	//printHeader();
         setPlayer();
         board = new Board();
     }

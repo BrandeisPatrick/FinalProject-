@@ -1,6 +1,8 @@
 package finalproject;
 
 public class Checker {
+	public static char player1 = '\u24C4';
+	public static char player2 = '\u24CD';
 	
 	public int x;
 	public int y;
@@ -23,18 +25,16 @@ public class Checker {
 		
 	public String toString(){
 		if (color) {
-			String s = "x ";
-			return s;
+			return String.valueOf(player1);
 		} else {
-			String s = "o ";
-			return s;
+			return String.valueOf(player2);
 		}
 	}
-	
+
 	public String printCoordinates() {
 		return("(" + this.x + ", "+ this.y + ")");
 	}
-	
+
 	public int getX() {
 		return this.x;
 	}

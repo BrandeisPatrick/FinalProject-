@@ -50,8 +50,13 @@ public class Player {
 		
 	}
 
-	public void tick(ArrayList<Checker> checkersInUse, Board board){  //do I need to take care of defensive programming
+	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
+		if(color){
+			System.out.println("Player 1's Turn ");
+		}else{
+			System.out.println("Player 2's Turn ");
+		}
 		System.out.println("Your move ");
 		String select = userinput.next();
 		String destination = userinput.next();
@@ -68,15 +73,14 @@ public class Player {
 		int fx = Integer.parseInt(destination.substring(1));
 
 
-		
-		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy))){  //can be simplified
+		while(findChecker(ix, iy, checkersInUse) == null || !canMove(fx, fy, board, findChecker(ix, iy, checkersInUse))){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move ");
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){
-				System.out.println("defensive programming, your input is invalid");
+				System.out.println("[debug] defensive programming, your input is invalid");
 				System.out.println("Your move ");
 				select = userinput.next();
 				destination = userinput.next();
@@ -87,8 +91,31 @@ public class Player {
 			fy = letterToInt.get(destination.substring(0,1));
 			fx = Integer.parseInt(destination.substring(1));
 		}
-		board.findChecker(ix, iy).move(fx,fy);
-	}	
+		System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
+		findChecker(ix, iy, checkersInUse).move(fx,fy);
+		//System.out.println("after move checker");
+		board.cleanBoard();
+		board.fillBoard();
+		System.out.println(board);
+	}
+
+
+
+	/*Given the array with ALL checkers currently in use, searches for a checker with specified x,y coordinates
+	 * If found, returns the checker, if not returns null
+	 */
+	public Checker findChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
+		for(int i = 0; i < checkersInUse.size(); i++) {
+			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
+			//	System.out.println("[debug] xCoordinate " + xCoordinate + " yCoordinate " + yCoordinate);
+				System.out.println("[debug] find checker's coordinate " + checkersInUse.get(i).getX() + " " + checkersInUse.get(i).getY());
+				return checkersInUse.get(i);
+			}
+		}
+		return null;
+	}
+	
+	
 	
 	//Tells if the checker is a checker of the opponents or not: returns true if it is, false if it's not
 	public boolean isEnemyColor(Checker checker) {
