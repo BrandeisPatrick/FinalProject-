@@ -1,6 +1,4 @@
 package finalproject;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Simlulation {
@@ -62,6 +60,9 @@ public class Simlulation {
      * x and y coordinates are those that the player is trying to move to, 
   	 * the player depends on which players turn it is, the checker is the checker the player wants to move*/
   	public boolean canMove(int xCoordinate, int yCoordinate, Player player, Checker c) { 
+  		if(c instanceof KingChecker) {
+  			c = (KingChecker) c; 
+  		}
   		
   		//check to see if it's an enemy
   		if(player.isEnemyColor(c) == true) {
@@ -73,7 +74,7 @@ public class Simlulation {
   			System.out.println("The Coordinates you entered are out of bounds");
   			return false;
   			//tests if the move was backwards
-  		}else if(player.moveBackwards(yCoordinate, c.getY())){
+  		}else if(c.moveBackwards(yCoordinate, c.getY())){
   			System.out.println("Invalid move, you cant move backwards as a regualar checker");
   			return false;
   		//tests if the spot is taken
