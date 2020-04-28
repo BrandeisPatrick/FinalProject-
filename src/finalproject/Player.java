@@ -69,7 +69,7 @@ public class Player {
 
 
 		
-		while(findChecker(ix, iy, checkersInUse) == null || !canMove(fx, fy, board, findChecker(ix, iy, checkersInUse))){  //can be simplified
+		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy))){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move ");
@@ -87,24 +87,8 @@ public class Player {
 			fy = letterToInt.get(destination.substring(0,1));
 			fx = Integer.parseInt(destination.substring(1));
 		}
-		findChecker(ix, iy, checkersInUse).move(fx,fy);
-	}
-
-
-
-	/*Given the array with ALL checkers currently in use, searches for a checker with specified x,y coordinates
-	 * If found, returns the checker, if not returns null
-	 */
-	public Checker findChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
-		for(int i = 0; i < checkersInUse.size(); i++) {
-			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
-				return checkersInUse.get(i);
-			}
-		}
-		return null;
-	}
-	
-	
+		board.findChecker(ix, iy).move(fx,fy);
+	}	
 	
 	//Tells if the checker is a checker of the opponents or not: returns true if it is, false if it's not
 	public boolean isEnemyColor(Checker checker) {
