@@ -48,14 +48,14 @@ public class Board {
 		}else{
 			color = false;
 			for(int i = 5; i <= 7; i++) {
-				if(i%2 == 0) {
+				if(i%2 != 0) {
 					for(int j = 0; j<=6; j+=2) {
-						checkers.add(new Checker(i,j, true, checkerNum +1));
+						checkers.add(new Checker(i,j, false, checkerNum +1));
 						checkerNum ++;
 					}
 				}else {
 					for(int j = 1; j<=7; j+=2) {
-						checkers.add(new Checker(i,j, true, checkerNum +1));
+						checkers.add(new Checker(i,j, false, checkerNum +1));
 						checkerNum ++;
 					}
 				}
