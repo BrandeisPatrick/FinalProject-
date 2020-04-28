@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Player {
 	public String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
-	public boolean color; //true = x false = o..
+	public boolean color; //true = x false = o.....
 	Map<String,Integer> letterToInt;
 	
 	public Player(boolean color) {
