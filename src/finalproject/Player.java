@@ -69,7 +69,7 @@ public class Player {
 
 
 		
-		while(findChecker(ix, iy, checkersInUse) == null || !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
+		while(findChecker(ix, iy, checkersInUse) == null || !canMove(fx, fy, board, findChecker(ix, iy, checkersInUse))){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move ");
