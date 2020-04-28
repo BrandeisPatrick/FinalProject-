@@ -37,6 +37,9 @@ public class Player {
 		}
 	}
 	
+
+	
+	
 	//testing code(static method)
 	public static void main(String[] args) {
 		Player pTrue = new Player(true);
@@ -64,8 +67,7 @@ public class Player {
 		int fy = letterToInt.get(destination.substring(0,1));
 		int fx = Integer.parseInt(destination.substring(1));
 
-		while(findChecker(ix, iy, checkersInUse) == null
-				|| !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
+		while(findChecker(ix, iy, checkersInUse) == null || !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move ");
@@ -89,13 +91,11 @@ public class Player {
 
 
 	public Checker findChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
-		System.out.println("debug");
 		for(int i = 0; i < checkersInUse.size(); i++) {
 			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getX()) {
 				return checkersInUse.get(i);
 			}
 		}
-		System.out.println("null point");
 		return null;
 	}
 	
