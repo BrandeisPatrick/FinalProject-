@@ -26,28 +26,13 @@ public class Player {
 			letterToInt.put(this.letters[i-1],i);
 		}
 	}
-	
 
-	
 	public String toString() {
 		if(this.color) {
 			return "Player 1";
 		}else {
 			return "Player 2";
 		}
-	}
-	
-
-	
-	
-	//testing code(static method)
-	public static void main(String[] args) {
-		Player pTrue = new Player(true);
-		Player pFalse = new Player(false);
-		System.out.println(pTrue);
-		System.out.println();
-		System.out.println(pFalse);
-		
 	}
 
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
@@ -124,7 +109,6 @@ public class Player {
 		}
 		return true;
 	}
-	
 
 	//tells if all pieces of a player is gone: returns false if there are pieces still left, false if all gone
 	public boolean allPiecesGone(ArrayList<Checker> checkersInUse) {
@@ -275,7 +259,19 @@ public class Player {
 			return false;
 		}
 	}
-	
-	
+
+
+
+
+	//testing code(static method)
+	public static void main(String[] args) {
+		Player pTrue = new Player(true);
+		Player pFalse = new Player(false);
+		System.out.println(pTrue);
+		System.out.println();
+		System.out.println(pFalse);
+
+	}
+
 }
 
