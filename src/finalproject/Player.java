@@ -130,10 +130,8 @@ public class Player {
   			System.out.println("And that's an invalid move, the spot is taken");
   			return false;
   			
-  		//If the move passes that stuff, it will now check if the move is valid based on if it's diagonal or straight
-  		}else{
-  			//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
-  			if(yCoordinate == c.y || xCoordinate == c.x) {
+  		//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
+  		}else if(yCoordinate == c.y || xCoordinate == c.x) {
   				if(xCoordinate == c.x + 4){
   					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
   					c.x + 1, c.y -1, c.x + 3, c.y -1, c.x + 2, c.y - 2, c.x + 1, c.y + 1, c.x + 3, c.y  + 1, c.x + 2, c.y + 2);
@@ -146,47 +144,49 @@ public class Player {
   				}else if(yCoordinate == c.y - 4){
   					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
   							c.x - 1, c.y - 1, c.x - 1, c.y - 3, c.x - 2, c.y - 2, c.x + 1, c.y - 1,c.x + 1, c.y - 3, c.x + 2, c.y - 2);
-  				}
-  				
-  				//The coordinates must be diagonal
   				}else {
-  					//checks if the checker made a valid single jump over an enemy checker
-  					if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
-  						return singleMoveValid(board, c.x + 2, c.y + 2);
-  					}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
-  						return singleMoveValid(board, c.x - 2, c.y + 2);
-  					}else if(xCoordinate == c.x + 2 && yCoordinate == c.y - 2){
-  						return singleMoveValid(board, c.x + 2, c.y - 2);
-  					}else if(xCoordinate == c.x - 2 && yCoordinate == c.y - 2){
-  						return singleMoveValid(board, c.x - 2, c.y - 2);
+  					System.out.println("You have to move diagonally");
+  					return false;
+  				}	
+  		//The coordinates must be diagonal
+  		}else {
+  			//checks if the checker made a valid single jump over an enemy checker
+  			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
+  				return singleMoveValid(board, c.x + 2, c.y + 2);
+  			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
+  				return singleMoveValid(board, c.x - 2, c.y + 2);
+  			}else if(xCoordinate == c.x + 2 && yCoordinate == c.y - 2){
+  				return singleMoveValid(board, c.x + 2, c.y - 2);
+  			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y - 2){
+  				return singleMoveValid(board, c.x - 2, c.y - 2);
   					
-  						//checks if a double jump is valid
-  					}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
-  						return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
-  					}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
-  						return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);
-  					}else if(xCoordinate == c.x + 4 && yCoordinate == c.y - 4){
-  						return doubleMoveValid(board, c.x + 1, c.y - 1, c.x + 3, c.y - 3, c.x + 2, c.y - 2);
-  					}else if(xCoordinate == c.x - 4 && yCoordinate == c.y - 4){
-  						return doubleMoveValid(board, c.x - 1, c.y - 1, c.x - 3, c.y - 3, c.x - 2, c.y - 2);
+  				//checks if a double jump is valid
+  			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
+  				return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
+  			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
+  				return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);
+  			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y - 4){
+  				return doubleMoveValid(board, c.x + 1, c.y - 1, c.x + 3, c.y - 3, c.x + 2, c.y - 2);
+  			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y - 4){
+  				return doubleMoveValid(board, c.x - 1, c.y - 1, c.x - 3, c.y - 3, c.x - 2, c.y - 2);
   						
-  					//By now, the move is either a single move or invalid
-  					}else {
-  						if((xCoordinate == c.x +1 && yCoordinate == c.y + 1) ||
-  						   (xCoordinate == c.x +1  && yCoordinate == c.y -1) ||
-  						   (xCoordinate == c.x - 1 && yCoordinate == c.y - 1) ||
-  						   (xCoordinate == c.x - 1 && yCoordinate == c.y +1)){
-  							return true;
-  						}else {
-  							System.out.println("Invalid move");
-  							return false;
-  						}
-  					}
-
+  			//By now, the move is either a single move or invalid
+  			}else {
+  				if((xCoordinate == c.x +1 && yCoordinate == c.y + 1) ||
+  				   (xCoordinate == c.x +1  && yCoordinate == c.y -1) ||
+  				   (xCoordinate == c.x - 1 && yCoordinate == c.y - 1) ||
+  				   (xCoordinate == c.x - 1 && yCoordinate == c.y +1)){
+  					return true;
+  				}else {
+  					System.out.println("Invalid move");
+  					return false;
   				}
   			}
-  		return true;
+
   		}
+  	}
+ 
+  	
   	
   //checks if a single jump move over an enemy is valid
   	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
