@@ -8,6 +8,7 @@ public class Simlulation {
     public Board board;
 
     public Simlulation() {
+    	printHeader();
         setPlayer();
         board = new Board();
     }
@@ -24,7 +25,7 @@ public class Simlulation {
         if(str.equals("yes")){
             System.out.println("The other Player will be Player 2");
         }else{
-            System.out.println("The other Player will be Player 2");
+            System.out.println("The other Player will be Player 1");
         }
         this.player1 = new Player(str.equals("yes"));
         this.player2 = new Player(!str.equals("yes"));
