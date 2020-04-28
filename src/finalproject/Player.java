@@ -125,6 +125,146 @@ public class Player {
 		return true;
 	}
 	
+	/*checks if the checker can move to a spot on the board specified by the player
+     * x and y coordinates are those that the player is trying to move to, 
+  	 * the player depends on which players turn it is, the checker is the checker the player wants to move*/
+  	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) { 
+  		if(c instanceof KingChecker) {
+  			c = (KingChecker) c; 
+  		}
+  		
+  		//check to see if it's an enemy
+  		if(this.isEnemyColor(c) == true) {
+  			System.out.println("You cannot move the oppponent's checkers");
+  			return false; 
+  		}
+  		//tests if coordinates are out of bounds
+  		else if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
+  			System.out.println("The Coordinates you entered are out of bounds");
+  			return false;
+  			//tests if the move was backwards
+  		}else if(c.moveBackwards(yCoordinate, c.getY())){
+  			System.out.println("Invalid move, you cant move backwards as a regualar checker");
+  			return false;
+  		//tests if the spot is taken
+  		}else if(board.findChecker(xCoordinate, yCoordinate) != null) {
+  			System.out.println("And that's an invalid move, the spot is taken");
+  			return false;
+  			
+  		//If the move passes that stuff, it will now check if the move is valid based on if it's diagonal or straight
+  		}else{
+  			//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
+  			if(yCoordinate == c.y || xCoordinate == c.x) {
+  				if(xCoordinate == c.x + 4){
+  					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
+  					c.x + 1, c.y -1, c.x + 3, c.y -1, c.x + 2, c.y - 2, c.x + 1, c.y + 1, c.x + 3, c.y  + 1, c.x + 2, c.y + 2);
+  				}else if(xCoordinate == c.x - 4) {
+  					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
+  							c.x - 1, c.y -1, c.x - 3, c.y -1, c.x - 2, c.y - 2, c.x - 1, c.y + 1, c.x - 3, c.y  + 1, c.x - 2, c.y + 2);
+  				}else if (yCoordinate == c.y + 4) {
+  					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
+  							c.x - 1, c.y + 1, c.x - 1, c.y + 3, c.x - 2, c.y + 2, c.x + 1, c.y + 1, c.x + 1, c.y  + 3, c.x + 2, c.y + 2);
+  				}else if(yCoordinate == c.y - 4){
+  					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
+  							c.x - 1, c.y - 1, c.x - 1, c.y - 3, c.x - 2, c.y - 2, c.x + 1, c.y - 1,c.x + 1, c.y - 3, c.x + 2, c.y - 2);
+  				}
+  				
+  				//The coordinates must be diagonal
+  				}else {
+  					//checks if the checker made a valid single jump over an enemy checker
+  					if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
+  						return singleMoveValid(board, c.x + 2, c.y + 2);
+  					}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
+  						return singleMoveValid(board, c.x - 2, c.y + 2);
+  					}else if(xCoordinate == c.x + 2 && yCoordinate == c.y - 2){
+  						return singleMoveValid(board, c.x + 2, c.y - 2);
+  					}else if(xCoordinate == c.x - 2 && yCoordinate == c.y - 2){
+  						return singleMoveValid(board, c.x - 2, c.y - 2);
+  					
+  						//checks if a double jump is valid
+  					}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
+  						return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
+  					}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
+  						return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);
+  					}else if(xCoordinate == c.x + 4 && yCoordinate == c.y - 4){
+  						return doubleMoveValid(board, c.x + 1, c.y - 1, c.x + 3, c.y - 3, c.x + 2, c.y - 2);
+  					}else if(xCoordinate == c.x - 4 && yCoordinate == c.y - 4){
+  						return doubleMoveValid(board, c.x - 1, c.y - 1, c.x - 3, c.y - 3, c.x - 2, c.y - 2);
+  						
+  					//By now, the move is either a single move or invalid
+  					}else {
+  						if((xCoordinate == c.x +1 && yCoordinate == c.y + 1) ||
+  						   (xCoordinate == c.x +1  && yCoordinate == c.y -1) ||
+  						   (xCoordinate == c.x - 1 && yCoordinate == c.y - 1) ||
+  						   (xCoordinate == c.x - 1 && yCoordinate == c.y +1)){
+  							return true;
+  						}else {
+  							System.out.println("Invalid move");
+  							return false;
+  						}
+  					}
+
+  				}
+  			}
+  		return true;
+  		}
+  	
+  //checks if a single jump move over an enemy is valid
+  	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
+  			if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
+  				//valid move
+  				board.removeChecker(enemyX, enemyY);
+  				return true;
+  				}else {
+  					System.out.println("Not a valid move");
+  					return false;
+  				}
+  	}
+  	
+	/*combines the two methods above: checks to see if a double jump is valid
+	 * the enemy coordinates are the coordinates of the two enemy checkers the checker wants to jump over
+	 * the open coordinates are the coordinates of the space in between them, you want to make sure that space is open
+	 */
+	public boolean doubleMoveValid(Board board, int enemyX1, int enemyY1, int enemyX2, int enemyY2, int openX, int openY) {
+		boolean enemySpotOpen1 = (!board.spotOpen(enemyX1, enemyY1)) && (this.isEnemyColor(board.findChecker(enemyX1, enemyY1)));
+								
+		boolean enemySpotOpen2 = (!board.spotOpen(enemyX2, enemyY2)) && (this.isEnemyColor(board.findChecker(enemyX2, enemyY2)));
+		boolean openSpotOpen = board.spotOpen(openX, openY);
+		if(enemySpotOpen1 && enemySpotOpen2 && openSpotOpen) { //if true, the move is valid)
+			board.removeChecker(enemyX1,  enemyY1);
+			board.removeChecker(enemyX2,  enemyY2);
+			return true;
+		}else {
+			return false;
+		}
+		
+		
+	}
+	
+	/*checks to see if a zigzag move is valid: xPt and yPt are the coordinates
+	 * of the two enemy checkers that the checker wants to jump over
+	 * xMiddle and yMiddle are the coordinate3s of the point in between, you want to make sure that space is open
+	 * 
+	 * Different from straightDoubleMove() because for this move, you have to check two conditions because the
+	 * checker could get to the target spot in two ways vs. only one in straightDoubleMove()
+	 */
+	public boolean zigzagMoveValid(Board board, int xCoordinate, int yCoordinate,
+		int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
+		if(doubleMoveValid(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
+			board.removeChecker(xPt1, yPt1);
+			board.removeChecker(xPt2, yPt2);
+			return true;
+		}else if(doubleMoveValid(board, xPt3, yPt3, xPt4, yPt4, xMiddlePt34, yMiddlePt34)) {
+			board.removeChecker(xPt3, yPt3);
+			board.removeChecker(xPt4, yPt4);
+			//valid move
+			return true;
+		}else {
+			System.out.println("Not a valid move");
+			return false;
+		}
+	}
+	
 	
 }
 
