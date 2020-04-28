@@ -101,11 +101,8 @@ public class Player {
 		int fy = letterToInt.get(destination.substring(0,1));
 		int fx = Integer.parseInt(destination.substring(1));
 
-<<<<<<< HEAD
+
 		while(findChecker(ix, iy, checkersInUse) == null || !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
-=======
-		while(findChecker(ix, iy, checkersInUse) == null || findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse) == false){  //can be simplified
->>>>>>> branch 'master' of https://github.com/BrandeisPatrick/FinalProject-.git
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move ");
@@ -125,6 +122,7 @@ public class Player {
 		}
 		findChecker(ix, iy, checkersInUse).move(fx,fy);
 	}
+
 
 
 
