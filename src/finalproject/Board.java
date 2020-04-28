@@ -110,7 +110,6 @@ public class Board {
 		}
 		return null;
 	}
-<<<<<<< HEAD
 	
 	//finds a checker with certain coordinates if it exists, given a checker
 		public Checker findChecker(Checker checker) {
@@ -165,9 +164,6 @@ public class Board {
 					}
 				}
 		
-=======
-
->>>>>>> branch 'master' of https://github.com/BrandeisPatrick/FinalProject-.git
 
 	public static void main(String[] args){
 		Board board = new Board();

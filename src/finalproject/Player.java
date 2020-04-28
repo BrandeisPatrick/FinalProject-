@@ -140,7 +140,8 @@ public class Player {
 		return null;
 	}
 	
-<<<<<<< HEAD
+	
+	//Returns the boolean of which color the checker is: basically saying what player is it
 	public boolean isEnemyColor(Checker checker) {
 		if(checker.getColor() == this.color) {
 			return false;
@@ -162,7 +163,9 @@ public class Player {
 			}else {
 				return false;
 			}
-=======
+		}
+	}
+
 	public boolean isMyChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
 		Checker c = findChecker(xCoordinate, yCoordinate, checkersInUse);
 		if(c.getColor() == this.color) {
@@ -170,9 +173,9 @@ public class Player {
 		}
 		else {
 			return false;
->>>>>>> branch 'master' of https://github.com/BrandeisPatrick/FinalProject-.git
 		}
 	}
+	
 	
 }
 
