@@ -38,16 +38,16 @@ public class Player {
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
 		if(color){
-			System.out.println("Player 1's Turn ");
+			System.out.println("Player X's Turn ");
 		}else{
-			System.out.println("Player 2's Turn ");
+			System.out.println("Player O's Turn ");
 		}
-		System.out.println("Your move ");
+		System.out.println("Your move** ");
 		String select = userinput.next();
 		String destination = userinput.next();
 		while(select.length()!= 2 || destination.length() != 2){
 			System.out.println("defensive programming, your input is invalid");
-			System.out.println("Your move ");
+			System.out.println("Your move// ");
 			select = userinput.next();
 			destination = userinput.next();
 		}
@@ -58,10 +58,10 @@ public class Player {
 		int fx = Integer.parseInt(destination.substring(1));
 
 
-		while(findChecker(ix, iy, checkersInUse) == null || !canMove(fx, fy, board, findChecker(ix, iy, checkersInUse))){  //can be simplified
+		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy))){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
-			System.out.println("Your move ");
+			System.out.println("Your move :)");
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){
@@ -77,27 +77,11 @@ public class Player {
 			fx = Integer.parseInt(destination.substring(1));
 		}
 		System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
-		findChecker(ix, iy, checkersInUse).move(fx,fy);
+		board.findChecker(ix, iy).move(fx,fy);
 		//System.out.println("after move checker");
 		board.cleanBoard();
 		board.fillBoard();
 		System.out.println(board);
-	}
-
-
-
-	/*Given the array with ALL checkers currently in use, searches for a checker with specified x,y coordinates
-	 * If found, returns the checker, if not returns null
-	 */
-	public Checker findChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
-		for(int i = 0; i < checkersInUse.size(); i++) {
-			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
-			//	System.out.println("[debug] xCoordinate " + xCoordinate + " yCoordinate " + yCoordinate);
-				System.out.println("[debug] find checker's coordinate " + checkersInUse.get(i).getX() + " " + checkersInUse.get(i).getY());
-				return checkersInUse.get(i);
-			}
-		}
-		return null;
 	}
 	
 	
@@ -146,10 +130,8 @@ public class Player {
   			System.out.println("And that's an invalid move, the spot is taken");
   			return false;
   			
-  		//If the move passes that stuff, it will now check if the move is valid based on if it's diagonal or straight
-  		}else{
-  			//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
-  			if(yCoordinate == c.y || xCoordinate == c.x) {
+  		//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
+  		}else if(yCoordinate == c.y || xCoordinate == c.x) {
   				if(xCoordinate == c.x + 4){
   					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
   					c.x + 1, c.y -1, c.x + 3, c.y -1, c.x + 2, c.y - 2, c.x + 1, c.y + 1, c.x + 3, c.y  + 1, c.x + 2, c.y + 2);
@@ -162,47 +144,49 @@ public class Player {
   				}else if(yCoordinate == c.y - 4){
   					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
   							c.x - 1, c.y - 1, c.x - 1, c.y - 3, c.x - 2, c.y - 2, c.x + 1, c.y - 1,c.x + 1, c.y - 3, c.x + 2, c.y - 2);
-  				}
-  				
-  				//The coordinates must be diagonal
   				}else {
-  					//checks if the checker made a valid single jump over an enemy checker
-  					if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
-  						return singleMoveValid(board, c.x + 2, c.y + 2);
-  					}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
-  						return singleMoveValid(board, c.x - 2, c.y + 2);
-  					}else if(xCoordinate == c.x + 2 && yCoordinate == c.y - 2){
-  						return singleMoveValid(board, c.x + 2, c.y - 2);
-  					}else if(xCoordinate == c.x - 2 && yCoordinate == c.y - 2){
-  						return singleMoveValid(board, c.x - 2, c.y - 2);
+  					System.out.println("You have to move diagonally");
+  					return false;
+  				}	
+  		//The coordinates must be diagonal
+  		}else {
+  			//checks if the checker made a valid single jump over an enemy checker
+  			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
+  				return singleMoveValid(board, c.x + 2, c.y + 2);
+  			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
+  				return singleMoveValid(board, c.x - 2, c.y + 2);
+  			}else if(xCoordinate == c.x + 2 && yCoordinate == c.y - 2){
+  				return singleMoveValid(board, c.x + 2, c.y - 2);
+  			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y - 2){
+  				return singleMoveValid(board, c.x - 2, c.y - 2);
   					
-  						//checks if a double jump is valid
-  					}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
-  						return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
-  					}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
-  						return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);
-  					}else if(xCoordinate == c.x + 4 && yCoordinate == c.y - 4){
-  						return doubleMoveValid(board, c.x + 1, c.y - 1, c.x + 3, c.y - 3, c.x + 2, c.y - 2);
-  					}else if(xCoordinate == c.x - 4 && yCoordinate == c.y - 4){
-  						return doubleMoveValid(board, c.x - 1, c.y - 1, c.x - 3, c.y - 3, c.x - 2, c.y - 2);
+  				//checks if a double jump is valid
+  			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
+  				return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
+  			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
+  				return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);
+  			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y - 4){
+  				return doubleMoveValid(board, c.x + 1, c.y - 1, c.x + 3, c.y - 3, c.x + 2, c.y - 2);
+  			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y - 4){
+  				return doubleMoveValid(board, c.x - 1, c.y - 1, c.x - 3, c.y - 3, c.x - 2, c.y - 2);
   						
-  					//By now, the move is either a single move or invalid
-  					}else {
-  						if((xCoordinate == c.x +1 && yCoordinate == c.y + 1) ||
-  						   (xCoordinate == c.x +1  && yCoordinate == c.y -1) ||
-  						   (xCoordinate == c.x - 1 && yCoordinate == c.y - 1) ||
-  						   (xCoordinate == c.x - 1 && yCoordinate == c.y +1)){
-  							return true;
-  						}else {
-  							System.out.println("Invalid move");
-  							return false;
-  						}
-  					}
-
+  			//By now, the move is either a single move or invalid
+  			}else {
+  				if((xCoordinate == c.x +1 && yCoordinate == c.y + 1) ||
+  				   (xCoordinate == c.x +1  && yCoordinate == c.y -1) ||
+  				   (xCoordinate == c.x - 1 && yCoordinate == c.y - 1) ||
+  				   (xCoordinate == c.x - 1 && yCoordinate == c.y +1)){
+  					return true;
+  				}else {
+  					System.out.println("Invalid move");
+  					return false;
   				}
   			}
-  		return true;
+
   		}
+  	}
+ 
+  	
   	
   //checks if a single jump move over an enemy is valid
   	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
