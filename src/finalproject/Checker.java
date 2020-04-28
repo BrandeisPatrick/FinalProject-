@@ -224,10 +224,10 @@ public class Checker {
 		
 	public String toString(){
 		if (color) {
-			String s = "x" + getNumber();
+			String s = "x ";
 			return s;
 		} else {
-			String s = "o" + getNumber();
+			String s = "o ";
 			return s;
 		}
 	}

@@ -17,7 +17,6 @@ public class Player {
 		int checkerNum = 0;
 		this.color = color;
 		this.checkers = new ArrayList<Checker>();
-		setCheckers(color, checkers, checkerNum);
 		setLetterToInt();
 	}
 
@@ -28,40 +27,7 @@ public class Player {
 		}
 	}
 
-	public void setCheckers(boolean color, ArrayList<Checker> checkers, int checkerNum) {
-		if(color == true) { //player x
-			this.color = true;
-			for(int i = 1; i < 4; i++) { //iterates through three rows
-				if(i%2 != 0) {
-					for(int j = 1; j<= 7; j+=2) {
-						checkers.add(new Checker(i-1, j, true, checkerNum +1));
-						checkerNum ++;
-					}
-				}else {
-					for(int j = 0; j<= 6; j+=2) {
-						checkers.add(new Checker(i-1, j, true, checkerNum +1));
-						checkerNum ++;
-					}
-				}
-			}
-		}else{
-			this.color = false;
-			for(int i = 5; i <= 7; i++) {
-				if(i%2 == 0) {
-					for(int j = 0; j<=6; j+=2) {
-						checkers.add(new Checker(i,j, true, checkerNum +1));
-						checkerNum ++;
-					}
-				}else {
-					for(int j = 1; j<=7; j+=2) {
-						checkers.add(new Checker(i,j, true, checkerNum +1));
-						checkerNum ++;
-					}
-				}
-			}
-			
-		}
-	}
+	
 	
 
 	
