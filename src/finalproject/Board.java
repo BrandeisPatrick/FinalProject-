@@ -74,17 +74,26 @@ public class Board {
 		}
 	}
 
+	public void cleanBoard(){
+		for(int i = 1; i <= 8; i++){  	  // vertical
+			for(int j = 1; j <= 8; j++){  // horizontal
+				this.board[i-1][j-1] = new Square();
+				this.board[i-1][j-1].setCoordinates(j,i);
+			}
+		}
+	}
+
 	//Inspired from Koolgee0's code to print A B E C E D on one side of the board
 	public String toString() {
 		StringBuilder output = new StringBuilder();
-		output.append("\n    1 2 3 4 5 6 7 8\n");
+		output.append("\n    1  2  3  4  5  6  7  8\n");
 		for (int i = 0; i < 8; i++) {
 			output.append(letters[i]).append("  ");
 			for (int j = 0; j < 8; j++) {
 				if (board[i][j].getChecker() != null) {
-					output.append(board[i][j].getChecker().toString());
+					output.append(board[i][j].getChecker().toString()).append(" ");
 				} else {
-					output.append(board[i][j].toString());
+					output.append(board[i][j].toString()).append(" ");
 				}
 			}
 			output.append("\n");
