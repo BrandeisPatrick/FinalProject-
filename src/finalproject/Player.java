@@ -15,6 +15,7 @@ public class Player {
 	
 	public Player(boolean color) {
 		int checkerNum = 0;
+		this.color = color;
 		this.checkers = new ArrayList<Checker>();
 		setCheckers(color, checkers, checkerNum);
 		setLetterToInt();
@@ -105,7 +106,8 @@ public class Player {
 		int fy = letterToInt.get(destination.substring(0,1));
 		int fx = Integer.parseInt(destination.substring(1));
 
-		while(findChecker(ix, iy, checkersInUse) != null || !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
+
+		while(findChecker(ix, iy, checkersInUse) == null || !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move ");
@@ -128,15 +130,17 @@ public class Player {
 
 
 
+
 	public Checker findChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
 		for(int i = 0; i < checkersInUse.size(); i++) {
-			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getX()) {
+			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
 				return checkersInUse.get(i);
 			}
 		}
 		return null;
 	}
 	
+<<<<<<< HEAD
 	public boolean isEnemyColor(Checker checker) {
 		if(checker.getColor() == this.color) {
 			return false;
@@ -158,6 +162,15 @@ public class Player {
 			}else {
 				return false;
 			}
+=======
+	public boolean isMyChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
+		Checker c = findChecker(xCoordinate, yCoordinate, checkersInUse);
+		if(c.getColor() == this.color) {
+			return true;
+		}
+		else {
+			return false;
+>>>>>>> branch 'master' of https://github.com/BrandeisPatrick/FinalProject-.git
 		}
 	}
 	

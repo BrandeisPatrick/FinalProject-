@@ -9,14 +9,9 @@ public class Simlulation {
     public Board board;
 
     public Simlulation() {
+    	printHeader();
         setPlayer();
         board = new Board();
-    }
-
-    public void tick(){
-        player1.tick(this.board.checkersInUse, this.board);
-        player2.tick(this.board.checkersInUse, this.board);
-        board.setBoard();
     }
 
     //distribute the players
@@ -31,7 +26,7 @@ public class Simlulation {
         if(str.equals("yes")){
             System.out.println("The other Player will be Player 2");
         }else{
-            System.out.println("The other Player will be Player 2");
+            System.out.println("The other Player will be Player 1");
         }
         this.player1 = new Player(str.equals("yes"));
         this.player2 = new Player(!str.equals("yes"));
@@ -49,6 +44,12 @@ public class Simlulation {
         System.out.println("For example E1 checker move to E2 position is \"E1 E2\"");
     }
 
+    public void tick(){
+        player1.tick(this.board.checkersInUse, this.board);
+        player2.tick(this.board.checkersInUse, this.board);
+        board.setBoard();
+
+    }
 
     @Override
     public String toString() {

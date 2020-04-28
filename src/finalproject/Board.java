@@ -24,9 +24,46 @@ public class Board {
 				this.board[i-1][j-1].setCoordinates(j,i);
 			}
 		}
+		setCheckers(true, checkersInUse, 12);
+		setCheckers(false, checkersInUse, 12);
 		fillBoard();
 	}
 
+	public void setCheckers(boolean color, ArrayList<Checker> checkers, int checkerNum) {
+		if(color == true) { //player x
+			color = true;
+			for(int i = 1; i < 4; i++) { //iterates through three rows
+				if(i%2 != 0) {
+					for(int j = 1; j<= 7; j+=2) {
+						checkers.add(new Checker(i-1, j, true, checkerNum +1));
+						checkerNum ++;
+					}
+				}else {
+					for(int j = 0; j<= 6; j+=2) {
+						checkers.add(new Checker(i-1, j, true, checkerNum +1));
+						checkerNum ++;
+					}
+				}
+			}
+		}else{
+			color = false;
+			for(int i = 5; i <= 7; i++) {
+				if(i%2 != 0) {
+					for(int j = 0; j<=6; j+=2) {
+						checkers.add(new Checker(i,j, false, checkerNum +1));
+						checkerNum ++;
+					}
+				}else {
+					for(int j = 1; j<=7; j+=2) {
+						checkers.add(new Checker(i,j, false, checkerNum +1));
+						checkerNum ++;
+					}
+				}
+			}
+			
+		}
+	}
+	
 	public void fillBoard(){
 		Iterator<Checker> itr  = this.checkersInUse.iterator();
 		while(itr.hasNext()){
@@ -47,7 +84,7 @@ public class Board {
 				if (board[i][j].getChecker() != null) {
 					output.append(board[i][j].getChecker().toString());
 				} else {
-					output.append(board[i][j].toString()).append(" ");
+					output.append(board[i][j].toString());
 				}
 			}
 			output.append("\n");
@@ -69,10 +106,11 @@ public class Board {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
 			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
 				return checkersInUse.get(i);
-			}
+			} 
 		}
 		return null;
 	}
+<<<<<<< HEAD
 	
 	//finds a checker with certain coordinates if it exists, given a checker
 		public Checker findChecker(Checker checker) {
@@ -127,6 +165,9 @@ public class Board {
 					}
 				}
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/BrandeisPatrick/FinalProject-.git
 
 	public static void main(String[] args){
 		Board board = new Board();
