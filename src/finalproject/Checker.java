@@ -224,9 +224,11 @@ public class Checker {
 		
 	public String toString(){
 		if (color) {
-			return "x";
+			String s = "x" + getNumber();
+			return s;
 		} else {
-			return "o";
+			String s = "o" + getNumber();
+			return s;
 		}
 	}
 	
