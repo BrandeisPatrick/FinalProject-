@@ -1,4 +1,5 @@
 package finalproject;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -32,24 +33,24 @@ public class Board {
 	public void setCheckers(boolean color, ArrayList<Checker> checkersInUse, int checkerNum) {
 		if(color == true) { //player x
 			color = true;
-			for(int i = 1; i < 4; i++) { //iterates through three rows
+			for(int i = 1; i <= 3; i++) { //iterates through three rows
 				if(i%2 != 0) {
 					for(int j = 1; j<= 7; j+=2) {
-						checkersInUse.add(new Checker( j, i -1 , true, checkerNum +1));
+						checkersInUse.add(new Checker( j, i,true, checkerNum +1));
 						checkerNum ++;
 					}
 				}else {
-					for(int j = 0; j<= 6; j+=2) {
-						checkersInUse.add(new Checker( j, i - 1, true, checkerNum +1));
+					for(int j = 2; j<= 8; j+=2) {
+						checkersInUse.add(new Checker( j, i,  true, checkerNum +1));
 						checkerNum ++;
 					}
 				}
 			}
 		}else{
 			color = false;
-			for(int i = 5; i <= 7; i++) {
+			for(int i = 6; i <= 8; i++) {
 				if(i%2 != 0) {
-					for(int j = 0; j<=6; j+=2) {
+					for(int j = 2; j<=8; j+=2) {
 						checkersInUse.add(new Checker(j, i, false, checkerNum +1));
 						checkerNum ++;
 					}
@@ -70,7 +71,8 @@ public class Board {
 			Checker checker = itr.next();
 			int x = checker.x;
 			int y = checker.y;
-			board[y][x].setChecker(checker);
+			//System.out.println("x = " + x + " y = " + y + " | " );
+			board[y-1][x-1].setChecker(checker);
 		}
 	}
 
@@ -86,7 +88,7 @@ public class Board {
 	//Inspired from Koolgee0's code to print A B E C E D on one side of the board
 	public String toString() {
 		StringBuilder output = new StringBuilder();
-		output.append("\n   1 2 3 4 5 6 7 8\n");
+		output.append("\n    1  2  3  4  5  6  7  8\n");
 		for (int i = 0; i < 8; i++) {
 			output.append(letters[i]).append("  ");
 			for (int j = 0; j < 8; j++) {
@@ -180,5 +182,12 @@ public class Board {
 		System.out.print(board);
 	}
 
-
+	//debug purpose
+	public void printCheckerCoord(){
+		StringBuilder builder = new StringBuilder();
+		for (Checker checker : this.checkersInUse){
+			builder.append("x = " + checker.x + " y = " + checker.y + " | " );
+		}
+		System.out.println(builder);
+	}
 }

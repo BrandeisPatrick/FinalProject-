@@ -10,6 +10,7 @@ public class Simlulation {
     	//printHeader();
         setPlayer();
         board = new Board();
+        board.printCheckerCoord();
     }
 
     //distribute the players
