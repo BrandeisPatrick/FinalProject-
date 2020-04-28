@@ -28,10 +28,10 @@ public class Player {
 	}
 
 	public String toString() {
-		if(this.color) {
-			return "Player 1";
+		if(this.color == true) {
+			return "Player X";
 		}else {
-			return "Player 2";
+			return "Player O";
 		}
 	}
 

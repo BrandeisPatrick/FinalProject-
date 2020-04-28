@@ -14,7 +14,7 @@ public class Simlulation {
 
     //distribute the players
     public void setPlayer() {
-        System.out.println("Would you like to be Player 1 ? (please reply yes or no)");
+        System.out.println("Would you like to be Player X ? (please reply yes or no)");
         Scanner sc = new Scanner(System.in);
         String str  = sc.next();
         while(!str.equals("yes") && !str.equals("no")){
@@ -22,19 +22,22 @@ public class Simlulation {
             str  = sc.next();
         }
         if(str.equals("yes")){
-            System.out.println("The other Player will be Player 2");
+        	this.player1 = new Player(true);
+            this.player2 = new Player(false);
         }else{
-            System.out.println("The other Player will be Player 1");
+        	this.player1 = new Player(false);
+            this.player2 = new Player(true);
         }
-        this.player1 = new Player(str.equals("yes"));
-        this.player2 = new Player(!str.equals("yes"));
+        System.out.println("You are " + this.player1);
+        System.out.println("The other person is " + this.player2);
+        
     }
 
     //print header method
     public void printHeader(){
         System.out.println("This is checker game for two people;");
-        System.out.println("Player 1 (red) will move first;");
-        System.out.println("Player 2 (black) will move after Player 1;");
+        System.out.println("Player X (red) will move first;");
+        System.out.println("Player O (black) will move after Player X;");
         System.out.println("red checkers will be represented as (X)");
         System.out.println("black checkers will be represented as (O)");
         System.out.println("In each move, select a checker by giving a coordinate;");
