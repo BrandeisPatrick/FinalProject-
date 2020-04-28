@@ -51,7 +51,22 @@ public class Checker {
 		return this.number;
 	}
 	
-	
+	//checks if its a backwards move based on what the color field of the player is
+	public boolean moveBackwards(int targetY, int originalY) {
+		if (this.color) { //true = x, false = o
+			if((originalY - targetY) > 0) {
+				return true;
+			}else {
+				return false;
+			}
+		}else{
+			if((originalY - targetY) < 0) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
 	
 	
 }

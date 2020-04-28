@@ -107,6 +107,7 @@ public class Player {
 		int fx = Integer.parseInt(destination.substring(1));
 
 
+		
 		while(findChecker(ix, iy, checkersInUse) == null || !findChecker(ix, iy, checkersInUse).canMove(board, fx, fy, checkersInUse)){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
@@ -141,6 +142,7 @@ public class Player {
 	}
 	
 	
+	
 	//Returns the boolean of which color the checker is: basically saying what player is it
 	public boolean isEnemyColor(Checker checker) {
 		if(checker.getColor() == this.color) {
@@ -149,22 +151,6 @@ public class Player {
 		return true;
 	}
 	
-	//checks if its a backwards move based on what the color field of the player is
-	public boolean moveBackwards(int targetY, int originalY) {
-		if (this.color) { //true = x, false = o
-			if((originalY - targetY) > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}else{
-			if((originalY - targetY) < 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-	}
 
 	public boolean isMyChecker(int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) {
 		Checker c = findChecker(xCoordinate, yCoordinate, checkersInUse);
@@ -173,6 +159,7 @@ public class Player {
 		}
 		else {
 			return false;
+			
 		}
 	}
 	
