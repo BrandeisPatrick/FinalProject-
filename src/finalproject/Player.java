@@ -134,7 +134,7 @@ public class Player {
   		}
   		
   		//check to see if it's an enemy
-  		if(this.isEnemyColor(c) == true) {
+  		if(this.isEnemyColor(c)) {
   			System.out.println("You cannot move the oppponent's checkers");
   			return false; 
   		}
@@ -142,7 +142,7 @@ public class Player {
   		else if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
   			System.out.println("The Coordinates you entered are out of bounds");
   			return false;
-  			//tests if the move was backwards
+  			//tests if the move was backwards, **the move will always pass this test is it's a king checker
   		}else if(c.moveBackwards(yCoordinate, c.getY())){
   			System.out.println("Invalid move, you cant move backwards as a regualar checker");
   			return false;
