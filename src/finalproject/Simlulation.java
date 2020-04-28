@@ -50,16 +50,11 @@ public class Simlulation {
         player1.tick(this.board.checkersInUse, this.board);
         player2.tick(this.board.checkersInUse, this.board);
         board.setBoard();
-
     }
 
     @Override
     public String toString() {
         return board.toString();
     }
-    
 
-    
-    
-	
 }
