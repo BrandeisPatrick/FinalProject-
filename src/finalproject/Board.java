@@ -86,7 +86,7 @@ public class Board {
 	//Inspired from Koolgee0's code to print A B E C E D on one side of the board
 	public String toString() {
 		StringBuilder output = new StringBuilder();
-		output.append("\n    1  2  3  4  5  6  7  8\n");
+		output.append("\n   1 2 3 4 5 6 7 8\n");
 		for (int i = 0; i < 8; i++) {
 			output.append(letters[i]).append("  ");
 			for (int j = 0; j < 8; j++) {
