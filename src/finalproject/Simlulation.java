@@ -12,12 +12,6 @@ public class Simlulation {
         board = new Board();
     }
 
-    public void tick(){
-        player1.tick(this.board.checkersInUse, this.board);
-        player2.tick(this.board.checkersInUse, this.board);
-        board.setBoard();
-    }
-
     //distribute the players
     public void setPlayer() {
         System.out.println("Would you like to be Player 1 ? (please reply yes or no)");
@@ -48,6 +42,12 @@ public class Simlulation {
         System.out.println("For example E1 checker move to E2 position is \"E1 E2\"");
     }
 
+    public void tick(){
+        player1.tick(this.board.checkersInUse, this.board);
+        player2.tick(this.board.checkersInUse, this.board);
+        board.setBoard();
+
+    }
 
     @Override
     public String toString() {

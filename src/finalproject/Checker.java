@@ -20,7 +20,9 @@ public class Checker {
 		this.x = x;
 		this.y = y;
 	}
-	
+
+
+
 	//checks if the checker can move to that spot 
 	//coordinates are those that the player is trying to move to, the array is the array of ALL checkers on the board
 	public boolean canMove(Board board, int xCoordinate, int yCoordinate, ArrayList<Checker> checkersInUse) { 

@@ -1,8 +1,8 @@
 package finalproject;
 
 public class Square {
-    public static char RED = '\u25A0';
-    public static char BLACK = '\u25A1';
+    public static char RED = '\u2B1C';
+    public static char BLACK = '\u2B1B';
 
     public Checker checker;
     public int x;
@@ -27,7 +27,7 @@ public class Square {
 
     @Override
     public String toString() {
-        if(this.checker != null){
+        if(this.checker != null){  //check if this hold a checker
             return this.checker.toString();
         }
         //Condition: this.checker == null

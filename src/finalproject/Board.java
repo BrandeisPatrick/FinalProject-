@@ -84,7 +84,7 @@ public class Board {
 				if (board[i][j].getChecker() != null) {
 					output.append(board[i][j].getChecker().toString());
 				} else {
-					output.append(board[i][j].toString()).append(" ");
+					output.append(board[i][j].toString());
 				}
 			}
 			output.append("\n");
@@ -110,16 +110,7 @@ public class Board {
 		}
 		return null;
 	}
-	
-	//finds a checker with certain coordinates if it exists, given a checker
-		public Checker findChecker(Checker checker) {
-			for(int i = 0; i < this.checkersInUse.size(); i++) {
-				if(checker.getX() == checkersInUse.get(i).getX() && checker.getY() == checkersInUse.get(i).getY()) {
-					return checkersInUse.get(i);
-				}
-			}
-			return null;
-		}
+
 
 	public static void main(String[] args){
 		Board board = new Board();
