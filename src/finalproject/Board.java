@@ -106,9 +106,8 @@ public class Board {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
 			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
 				return checkersInUse.get(i);
-			}
+			} else {
 		}
-		return null;
 	}
 
 
