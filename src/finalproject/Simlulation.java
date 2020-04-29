@@ -69,6 +69,10 @@ public class Simlulation {
         return true;
     }
 
+    public void board_ababcd(){
+        this.board = new Board_ababcd();
+    }
+
     @Override
     public String toString() {
         return board.toString();
