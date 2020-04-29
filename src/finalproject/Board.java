@@ -143,7 +143,17 @@ public class Board {
 			}
 			return true;
 		}
-		
+
+		public void removeChecker(Checker checker){
+			Checker removed = checker;
+			this.board[removed.getY()-1][removed.getX()-1].removeChecker();
+			for(int i = 0; i < this.checkersInUse.size(); i++) {
+				if(removed.getX() == checkersInUse.get(i).getX() && removed.getY() == checkersInUse.get(i).getY()) {
+					this.checkersInUse.remove(i);
+				}
+			}
+		}
+
 		//Removes enemy checker that has been eaten
 				public void removeChecker(int enemyxCoordinate, int enemyyCoordinate) {
 					for(Checker c : this.checkersInUse) {
