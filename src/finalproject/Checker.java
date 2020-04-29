@@ -1,5 +1,12 @@
 package finalproject;
 
+/*
+ * This class represents a single checker in the game. The char fields are associated with how they appear
+ * on the board when the board is printed. The checkers follow the rules of how checkers can move.
+ * (x,y) is the coordinates on the board. the x coordinate is the horizontal axis and the y is the vertical axis
+ * color tells which player the checker is associated
+ * number is associated with how the checkers are set up and how many checkers each player gets
+ */
 public class Checker {
 //	public static char player1 = '\u24CD';
 	public static char player1 = 'x';
@@ -16,9 +23,11 @@ public class Checker {
 		this.y = y;
 		this.color = color;
 		this.number = number;
+		
 	}
 
 	
+	//moves checker from one spot to another
 	public void move(int x,int y) {
 		this.x = x;
 		this.y = y;
@@ -49,9 +58,6 @@ public class Checker {
 		return this.color;
 	}
 	
-	public int getNumber() {
-		return this.number;
-	}
 	
 	//checks if its a backwards move based on what the color field of the player is
 	public boolean moveBackwards(int targetY, int originalY) {

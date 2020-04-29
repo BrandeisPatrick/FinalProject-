@@ -3,6 +3,15 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+ * This class is basically the board for the checker game. 
+ * String[] letters is the array that allows for conversion between the board coordinates and x, y coordinates
+ * Square[][] board is what the simulation prints to build the board on the console
+ * ArrayList<Checker> checkersInUse is all the checkers currently on the board at a given time
+ * 
+ * The board sets up all checkers at the start of the game. It also has a number of methods for 
+ * finding and removing checkers on the board, and checking if spots are filled on the board
+ */
 
 public class Board {
 	public String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
@@ -30,6 +39,7 @@ public class Board {
 		fillBoard();
 	}
 
+	//sets up the checkers on the board initially to begin the game
 	public void setCheckers(boolean color, ArrayList<Checker> checkersInUse, int checkerNum) {
 		if(color == true) { //player x
 			color = true;
@@ -65,6 +75,7 @@ public class Board {
 		}
 	}
 	
+	//Fills the the board array with checkers so that the board can be displayed correctly on console
 	public void fillBoard(){
 		Iterator<Checker> itr  = this.checkersInUse.iterator();
 		while(itr.hasNext()){
@@ -76,6 +87,7 @@ public class Board {
 		}
 	}
 
+	//makes sure there are no duplicate checkers left on the board each time a move has been made
 	public void cleanBoard(){
 		for(int i = 1; i <= 8; i++){  	  // vertical
 			for(int j = 1; j <= 8; j++){  // horizontal
@@ -133,49 +145,48 @@ public class Board {
 			return null;
 		}
 		
-		//checks if a spot is already taken or it's open
-		public boolean spotOpen(int xCoordinate, int yCoordinate) {
-			for(int i = 0; i < this.checkersInUse.size(); i++) {
-				if(this.checkersInUse.get(i).getX() == xCoordinate &&
-				   this.checkersInUse.get(i).getY() == yCoordinate) {
-					return false;
-				}
+	//checks if a spot is already taken or it's open
+	public boolean spotOpen(int xCoordinate, int yCoordinate) {
+		for(int i = 0; i < this.checkersInUse.size(); i++) {
+			if(this.checkersInUse.get(i).getX() == xCoordinate &&
+				this.checkersInUse.get(i).getY() == yCoordinate) {
+				return false;
 			}
-			return true;
 		}
+		return true;
+	}
 
-		//Removes enemy checker that has been eaten
-		public void removeChecker(int enemyX, int enemyY) {
-			for(int i = 0; i < this.checkersInUse.size(); i++) {
-				if(checkersInUse.get(i).getX() == enemyX && checkersInUse.get(i).getY() == enemyY) {
-						this.checkersInUse.remove(checkersInUse.get(i));
-				}
+	//Removes enemy checker that has been eaten
+	public void removeChecker(int enemyX, int enemyY) {
+		for(int i = 0; i < this.checkersInUse.size(); i++) {
+			if(checkersInUse.get(i).getX() == enemyX && checkersInUse.get(i).getY() == enemyY) {
+				this.checkersInUse.remove(checkersInUse.get(i));
 			}
 		}
+	}
 				
 				
-			//Checks if the Checker has reached the opposite side
-			//Adds a new KingChecker and removes Checker if it has
-				public void checkForKing() {
-					for(int i = 0; i < this.checkersInUse.size(); i++) {
-						if(!this.checkersInUse.get(i).toString().equals("X") || !this.checkersInUse.get(i).toString().equals("O")) {
-							if(this.checkersInUse.get(i).getColor() == true) {
-								if (this.checkersInUse.get(i).getY() == 8) {
-									KingChecker newChecker = new KingChecker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), true, this.checkersInUse.get(i).getNumber());
-									this.checkersInUse.add(newChecker);
-									this.checkersInUse.remove(this.checkersInUse.get(i));
-								}
-							}
-							else {
-								if(this.checkersInUse.get(i).getY() == 1) {
-									KingChecker newChecker = new KingChecker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), false, this.checkersInUse.get(i).getNumber());
-									this.checkersInUse.add(newChecker);
-									this.checkersInUse.remove(this.checkersInUse.get(i));
-								}
-							}
-						}
+	//Checks if the Checker has reached the opposite side
+	//Adds a new KingChecker and removes Checker if it has
+	public void checkForKing() {
+		for(int i = 0; i < this.checkersInUse.size(); i++) {
+			if(!this.checkersInUse.get(i).toString().equals("X") || !this.checkersInUse.get(i).toString().equals("O")) {
+				if(this.checkersInUse.get(i).getColor() == true) {
+					if (this.checkersInUse.get(i).getY() == 8) {
+						KingChecker newChecker = new KingChecker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), true, this.checkersInUse.get(i).getNumber());
+						this.checkersInUse.add(newChecker);
+						this.checkersInUse.remove(this.checkersInUse.get(i));
+					}
+				}else {
+					if(this.checkersInUse.get(i).getY() == 1) {
+						KingChecker newChecker = new KingChecker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), false, this.checkersInUse.get(i).getNumber());
+						this.checkersInUse.add(newChecker);
+						this.checkersInUse.remove(this.checkersInUse.get(i));
 					}
 				}
+			}
+		}
+	}
 	
 				
 	public static void main(String[] args){

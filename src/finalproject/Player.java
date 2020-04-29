@@ -5,7 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
+/*
+ * Player represents a player in the game, either x or o. 
+ * String[] letters and Map<String,Integer> letterToInt exist for translation of the board coordinates
+ * into (x,y) coordinates
+ * color is also associated with a player which links the player with its checkers
+ * 
+ * Player has a number of important methods including the tick method for each players turn
+ * and the method to see if a certain move is valid. It also has smaller methods accosiated with a player
+ * like a method to tell is a checker is an enemy checker or not and a method to see if all the 
+ * player's pieces are gone
+ */
 public class Player {
 	public String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 	public boolean color; //true = x false = o.....
@@ -20,6 +30,7 @@ public class Player {
 		this.color = true;
 	}
 	
+	//translates a letter on the board to its corresponding integer 1-8
 	public void setLetterToInt() {
 		this.letterToInt = new HashMap<String,Integer>();
 		for(int i = 1; i <= 8; i++){
@@ -35,6 +46,10 @@ public class Player {
 		}
 	}
 
+	/*executes the player's turn: asks for input until given valid input
+	 * moves the players checkers
+	 * resets the board to show the new arrangement
+	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
 		if(color){

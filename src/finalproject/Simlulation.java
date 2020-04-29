@@ -1,6 +1,14 @@
 package finalproject;
 import java.util.Scanner;
 
+/*
+ * This class handles all the larger pictures things that 
+ * involve multiple other classes. It does jobs related to setting up the game and running it.
+ * 
+ * Simulation initiates the two players and the board for the game.
+ * It also prints a welcome message and executes each player's tick method in one larger tick method.
+ */
+
 public class Simlulation {
     public Player player1; //boolean = true, x
     public Player player2; //boolean false, o
@@ -13,7 +21,7 @@ public class Simlulation {
         board.printCheckerCoord();
     }
 
-    //distribute the players
+    //distribute the players and checkers to start the game
     public void setPlayer() {
         System.out.println("Would you like to be Player X ? (please reply yes or no)");
         Scanner sc = new Scanner(System.in);
@@ -34,7 +42,7 @@ public class Simlulation {
         
     }
 
-    //print header method
+    //print header method at the start of the program
     public void printHeader(){
         System.out.println("This is checker game for two people;");
         System.out.println("Player X  will move first;");
@@ -44,6 +52,7 @@ public class Simlulation {
         System.out.println();
     }
 
+    //Runs each player's tick method
     public void tick(){
         player1.tick(this.board.checkersInUse, this.board);
 //      player2.tick(this.board.checkersInUse, this.board);.

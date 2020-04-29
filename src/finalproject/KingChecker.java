@@ -1,6 +1,10 @@
 package finalproject;
-
 import java.util.ArrayList;
+
+/*
+ * KingChecker is a normal checker except with the special feature that it can move forwards and 
+ * backwards. It is designated with capital X and O instead of lower case
+ */
 
 public class KingChecker extends Checker {
 
