@@ -65,6 +65,7 @@ public class Player {
 		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy)) ){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
+			System.out.println("This move is invalid (either you are moving a null point or your move is illegal)");
 			System.out.println("Your move :)");
 			select = userinput.next();
 			destination = userinput.next();
@@ -263,8 +264,6 @@ public class Player {
 			return false;
 		}
 	}
-
-
 
 
 	//testing code(static method)
