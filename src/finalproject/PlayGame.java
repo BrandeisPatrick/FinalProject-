@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class PlayGame {
 
 	public static void main(String[] args) {
-
 		Simlulation sim = new Simlulation();
 		System.out.println(sim);
 		for(int i = 0; i <= 10; i++) {

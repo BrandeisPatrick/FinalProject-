@@ -7,7 +7,7 @@ public class Simlulation {
     public Board board;
 
     public Simlulation() {
-    	//printHeader();
+    	printHeader();
         setPlayer();
         board = new Board();
         board.printCheckerCoord();
@@ -44,6 +44,7 @@ public class Simlulation {
         System.out.println("In each move, select a checker by giving a coordinate;");
         System.out.println("then give the destination coordinate, separated by a space");
         System.out.println("For example E1 checker move to E2 position is \"E1 E2\"");
+        System.out.println();
     }
 
     public void tick(){
