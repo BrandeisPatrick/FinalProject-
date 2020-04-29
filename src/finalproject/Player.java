@@ -42,7 +42,7 @@ public class Player {
 		}else{
 			System.out.println("Player O's Turn ");
 		}
-		System.out.println("Your move** ");
+		System.out.println("Your move  ");
 		String select = userinput.next();
 		String destination = userinput.next();
 
