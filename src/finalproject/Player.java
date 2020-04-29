@@ -70,7 +70,7 @@ public class Player {
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){
-				System.out.println("[debug] defensive programming, your input is invalid");
+				System.out.println("your input is invalid");
 				System.out.println("Your move ");
 				select = userinput.next();
 				destination = userinput.next();
@@ -81,14 +81,14 @@ public class Player {
 			fy = letterToInt.get(destination.substring(0,1));
 			fx = Integer.parseInt(destination.substring(1));
 		}
-		System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
+		//System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
 		board.findChecker(ix, iy).move(fx,fy);
 		board.checkForKing();
 		//System.out.println("after move checker");
 		board.cleanBoard();
 		board.fillBoard();
 		System.out.println(board);
-		board.printCheckerCoord();
+	//	board.printCheckerCoord();
 	}
 	
 	
@@ -115,7 +115,7 @@ public class Player {
      * x and y coordinates are those that the player is trying to move to, 
   	 * the player depends on which players turn it is, the checker is the checker the player wants to move*/
   	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) { 
-  		System.out.println("Enetered canmove method");
+  		//System.out.println("Enetered canmove method");
   		if(c instanceof KingChecker) {
   			c = (KingChecker) c; 
   		}
@@ -158,7 +158,7 @@ public class Player {
   				}	
   		//The coordinates must be diagonal
   		}else {
-  			System.out.println("Entered diagonal loop");
+  			//System.out.println("Entered diagonal loop");
   			//checks if the checker made a valid single jump over an enemy checker.
   			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
   				System.out.println("Entered test 1");
