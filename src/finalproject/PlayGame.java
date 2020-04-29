@@ -7,11 +7,8 @@ public class PlayGame {
 	public static void main(String[] args) {
 		Simlulation sim = new Simlulation();
 		System.out.println(sim);
-		for(int i = 0; i <= 10; i++) {
-			sim.tick();	
+		while(sim.tick() == true) {	
 		}
-
-		
 		System.out.println("END OF THE GAME");
 		System.out.println(sim);
 
