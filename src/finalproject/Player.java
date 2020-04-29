@@ -159,7 +159,8 @@ public class Player {
   			System.out.println("Entered diagonal loop");
   			//checks if the checker made a valid single jump over an enemy checker
   			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
-  				return singleMoveValid(board, c.x + 2, c.y + 2);
+  				System.out.println("Entered test 1");
+  				return singleMoveValid(board, c.x + 1, c.y + 1);
   			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
   				return singleMoveValid(board, c.x - 2, c.y + 2);
   			}else if(xCoordinate == c.x + 2 && yCoordinate == c.y - 2){
@@ -169,7 +170,7 @@ public class Player {
   					
   				//checks if a double jump is valid
   			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
-  				System.out.println("Entered test 1");
+  				System.out.println("Entered double test 1");
   				return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
   			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
   				return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);

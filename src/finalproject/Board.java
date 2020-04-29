@@ -144,26 +144,16 @@ public class Board {
 			return true;
 		}
 
-		public void removeChecker(Checker checker){
-			Checker removed = checker;
-			this.board[removed.getY()-1][removed.getX()-1].removeChecker();
+
+		//Removes enemy checker that has been eaten
+		public void removeChecker(int enemyX, int enemyY) {
 			for(int i = 0; i < this.checkersInUse.size(); i++) {
-				if(removed.getX() == checkersInUse.get(i).getX() && removed.getY() == checkersInUse.get(i).getY()) {
-					this.checkersInUse.remove(i);
+				if(checkersInUse.get(i).getX() == enemyX && checkersInUse.get(i).getY() == enemyY) {
+						this.checkersInUse.remove(checkersInUse.get(i));
 				}
 			}
 		}
-
-		//Removes enemy checker that has been eaten
-				public void removeChecker(int enemyxCoordinate, int enemyyCoordinate) {
-					for(Checker c : this.checkersInUse) {
-						if(c.getX() == enemyxCoordinate) {
-							if(c.getY() == enemyyCoordinate) {
-								this.checkersInUse.remove(c);
-							}
-						}
-					}
-				}
+				
 				
 			//Checks if the Checker has reached the opposite side
 			//Adds a new KingChecker and removes Checker if it has
