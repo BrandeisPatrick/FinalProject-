@@ -192,37 +192,43 @@ public class Player {
  
   	
   	
-  //checks if a single jump move over an enemy is valid
-  	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
-  			if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
-  				//valid move
-  				board.removeChecker(enemyX, enemyY);
-  				return true;
-  				}else {
-  					System.out.println("Not a valid move");
-  					return false;
-  				}
-  	}
+  	/*checks if a single jump move over an enemy is valid: returns false if 
+     * either the there is no checker to eat or if the checker is not an enemy checker
+     */
+    	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
+  			if(board.findChecker(enemyX, enemyY) != null) {
+  				if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
+  	  				//valid move
+  	  				board.removeChecker(enemyX, enemyY);
+  	  				return true;
+  	  				}else {
+  	  					System.out.println("Not a valid move");
+  	  					return false;
+  	  				}
+  			}else {
+  				System.out.println("You can't move more than one space without eating an enemy checker");
+  				return false;
+  			}
+    			
+    	}
   	
 	/*combines the two methods above: checks to see if a double jump is valid
 	 * the enemy coordinates are the coordinates of the two enemy checkers the checker wants to jump over
 	 * the open coordinates are the coordinates of the space in between them, you want to make sure that space is open
 	 */
-	public boolean doubleMoveValid(Board board, int enemyX1, int enemyY1, int enemyX2, int enemyY2, int openX, int openY) {
-		boolean enemySpotOpen1 = (!board.spotOpen(enemyX1, enemyY1)) && (this.isEnemyColor(board.findChecker(enemyX1, enemyY1)));
-								
-		boolean enemySpotOpen2 = (!board.spotOpen(enemyX2, enemyY2)) && (this.isEnemyColor(board.findChecker(enemyX2, enemyY2)));
-		boolean openSpotOpen = board.spotOpen(openX, openY);
-		if(enemySpotOpen1 && enemySpotOpen2 && openSpotOpen) { //if true, the move is valid)
-			board.removeChecker(enemyX1,  enemyY1);
-			board.removeChecker(enemyX2,  enemyY2);
-			return true;
-		}else {
-			return false;
-		}
-		
-		
-	}
+    	public boolean doubleMoveValid(Board board, int enemyX1, int enemyY1, int enemyX2, int enemyY2, int openX, int openY) {
+    		boolean firstJumpValid = singleMoveValid(board, enemyX1, enemyY1) && board.spotOpen(openX, openY);						
+    		boolean secondJumpValid = (singleMoveValid(board, enemyX2, enemyY2));
+    		if(firstJumpValid && secondJumpValid) { //if true, the move is valid)
+    			board.removeChecker(enemyX1,  enemyY1);
+    			board.removeChecker(enemyX2,  enemyY2);
+    			return true;
+    		}else {
+    			System.out.println("Invalid move");
+    			return false;
+    		}
+    	}
+
 	
 	/*checks to see if a zigzag move is valid: xPt and yPt are the coordinates
 	 * of the two enemy checkers that the checker wants to jump over
