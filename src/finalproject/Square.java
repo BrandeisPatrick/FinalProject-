@@ -23,6 +23,11 @@ public class Square {
         this.checker = checker;
     }
 
+    public void removeChecker( ) {
+        this.checker = null;
+    }
+
+
     public Checker getChecker() {
         return checker;
     }
