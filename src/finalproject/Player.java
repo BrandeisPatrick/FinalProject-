@@ -131,6 +131,10 @@ public class Player {
   			return false;
   		//tests if the spot is taken
   		}else if(board.findChecker(xCoordinate, yCoordinate) != null) {
+  			if(board.findChecker(xCoordinate, yCoordinate).color != c.color){
+  				board.removeChecker(xCoordinate, yCoordinate);
+  				return true;
+			}
   			System.out.println("And that's an invalid move, the spot is taken");
   			return false;
   			

@@ -48,8 +48,9 @@ public class Simlulation {
 
     public void tick(){
         player1.tick(this.board.checkersInUse, this.board);
+        this.board.checkForKing();
         player2.tick(this.board.checkersInUse, this.board);
-        //board.setBoard();
+        this.board.checkForKing();
     }
 
     @Override

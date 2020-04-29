@@ -3,8 +3,8 @@ package finalproject;
 public class Square {
     public static char RED = '\u2B1C';
 //    public static char RED = '\u25A1';
-    public static char BLACK = '\u2B1B';
-//    public static char BLACK = ' ';
+//    public static char BLACK = '\u2B1B';
+    public static char BLACK = ' ';
 
     public Checker checker;
     public int x;
