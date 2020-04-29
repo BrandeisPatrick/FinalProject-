@@ -62,7 +62,7 @@ public class Player {
 		int fx = Integer.parseInt(destination.substring(1));
 
 
-		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy))){  //can be simplified
+		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy)) ){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
 			System.out.println("Your move :)");
@@ -82,10 +82,12 @@ public class Player {
 		}
 		System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
 		board.findChecker(ix, iy).move(fx,fy);
+		board.checkForKing();
 		//System.out.println("after move checker");
 		board.cleanBoard();
 		board.fillBoard();
 		System.out.println(board);
+		board.printCheckerCoord();
 	}
 	
 	
@@ -112,6 +114,7 @@ public class Player {
      * x and y coordinates are those that the player is trying to move to, 
   	 * the player depends on which players turn it is, the checker is the checker the player wants to move*/
   	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) { 
+  		System.out.println("Enetered canmove method");
   		if(c instanceof KingChecker) {
   			c = (KingChecker) c; 
   		}
@@ -127,7 +130,7 @@ public class Player {
   			return false;
   			//tests if the move was backwards, **the move will always pass this test is it's a king checker
   		}else if(c.moveBackwards(yCoordinate, c.getY())){
-  			System.out.println("Invalid move, you cant move backwards as a regualar checker");
+  			System.out.println("Invalid move: you cant move backwards as a regualar checker");
   			return false;
   		//tests if the spot is taken
   		}else if(board.findChecker(xCoordinate, yCoordinate) != null) {
@@ -137,7 +140,7 @@ public class Player {
 			}
   			System.out.println("And that's an invalid move, the spot is taken");
   			return false;
-  			
+
   		//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
   		}else if(yCoordinate == c.y || xCoordinate == c.x) {
   				if(xCoordinate == c.x + 4){
@@ -158,6 +161,7 @@ public class Player {
   				}	
   		//The coordinates must be diagonal
   		}else {
+  			System.out.println("Entered diagonal loop");
   			//checks if the checker made a valid single jump over an enemy checker
   			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
   				return singleMoveValid(board, c.x + 2, c.y + 2);
@@ -170,6 +174,7 @@ public class Player {
   					
   				//checks if a double jump is valid
   			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
+  				System.out.println("Entered test 1");
   				return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
   			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
   				return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);

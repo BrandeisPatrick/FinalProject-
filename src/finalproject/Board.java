@@ -158,16 +158,16 @@ public class Board {
 			//Checks if the Checker has reached the opposite side
 			//Adds a new KingChecker and removes Checker if it has
 				public void checkForKing() {
-					for (Checker c : this.checkersInUse) {
+					for(int i = 0; i < this.checkersInUse.size(); i++) {
 						if(!c.toString().equals("X") || !c.toString().equals("O")) {
-							if(c.getColor() == true) {//Player 1
+							if(c.getColor() == true) {
 								if (c.getX() == 8) {
 									KingChecker newChecker = new KingChecker(c.getX(), c.getY(), true, c.getNumber());
 									this.checkersInUse.add(newChecker);
 									this.checkersInUse.remove(c);
 								}
 							}
-							else {//Player 2
+							else {
 								if(c.getX() == 1) {
 									KingChecker newChecker = new KingChecker(c.getX(), c.getY(), false, c.getNumber());
 									this.checkersInUse.add(newChecker);

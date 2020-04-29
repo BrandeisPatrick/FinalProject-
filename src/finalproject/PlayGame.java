@@ -8,13 +8,11 @@ public class PlayGame {
 
 		Simlulation sim = new Simlulation();
 		System.out.println(sim);
-		sim.tick();
-		sim.tick();
-		sim.tick();
-		sim.tick();
-		sim.tick();
-		sim.tick();
-		sim.tick();
+		for(int i = 0; i <= 10; i++) {
+			sim.tick();	
+		}
+
+		
 		System.out.println("END OF THE GAME");
 		System.out.println(sim);
 
