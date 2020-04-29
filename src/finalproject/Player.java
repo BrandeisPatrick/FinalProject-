@@ -162,11 +162,11 @@ public class Player {
   				System.out.println("Entered test 1");
   				return singleMoveValid(board, c.x + 1, c.y + 1);
   			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
-  				return singleMoveValid(board, c.x - 2, c.y + 2);
+  				return singleMoveValid(board, c.x - 1, c.y + 1);
   			}else if(xCoordinate == c.x + 2 && yCoordinate == c.y - 2){
-  				return singleMoveValid(board, c.x + 2, c.y - 2);
+  				return singleMoveValid(board, c.x + 1, c.y - 1);
   			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y - 2){
-  				return singleMoveValid(board, c.x - 2, c.y - 2);
+  				return singleMoveValid(board, c.x - 1, c.y - 1);
   					
   				//checks if a double jump is valid
   			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
