@@ -55,7 +55,7 @@ public class Player {
 		}
 
 
-		int iy = letterToInt.get(select.substring(0,1));  // expect: E would be mapped to 1
+		int iy = letterToInt.get(select.substring(0,1));  // expect E would be mapped to 1
 		int ix = Integer.parseInt(select.substring(1));
 
 		int fy = letterToInt.get(destination.substring(0,1));
