@@ -34,9 +34,9 @@ public class Square {
         }
         //Condition: this.checker == null
         if((this.x + this.y) % 2 == 0){
-            return String.valueOf(RED);
-        }else{
             return String.valueOf(BLACK);
+        }else{
+            return String.valueOf(RED);
         }
     }
 }

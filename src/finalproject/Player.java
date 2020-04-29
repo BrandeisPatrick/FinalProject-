@@ -45,12 +45,16 @@ public class Player {
 		System.out.println("Your move** ");
 		String select = userinput.next();
 		String destination = userinput.next();
+
+
 		while(select.length()!= 2 || destination.length() != 2){
 			System.out.println("defensive programming, your input is invalid");
 			System.out.println("Your move// ");
 			select = userinput.next();
 			destination = userinput.next();
 		}
+
+
 		int iy = letterToInt.get(select.substring(0,1));  // expect: E would be mapped to 1
 		int ix = Integer.parseInt(select.substring(1));
 

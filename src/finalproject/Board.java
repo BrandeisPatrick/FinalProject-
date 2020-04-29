@@ -16,7 +16,7 @@ public class Board {
 
 	}
 
-	//create board and give each Square coordinates...
+	//create board and give each Square coordinates
 	public void setBoard() {
 		this.board = new Square[8][8];
 		for(int i = 1; i <= 8; i++){  	  // vertical
@@ -50,12 +50,12 @@ public class Board {
 			color = false;
 			for(int i = 6; i <= 8; i++) {
 				if(i%2 != 0) {
-					for(int j = 2; j<=8; j+=2) {
+					for(int j = 1; j<=7; j+=2) {
 						checkersInUse.add(new Checker(j, i, false, checkerNum +1));
 						checkerNum ++;
 					}
 				}else {
-					for(int j = 1; j<=7; j+=2) {
+					for(int j = 2; j<=8; j+=2) {
 						checkersInUse.add(new Checker(j, i, false, checkerNum +1));
 						checkerNum ++;
 					}

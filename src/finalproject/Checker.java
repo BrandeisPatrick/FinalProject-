@@ -1,9 +1,9 @@
 package finalproject;
 
 public class Checker {
-	public static char player1 = '\u24C4';
+	public static char player1 = '\u24CD';
 //	public static char player1 = 'x';
-	public static char player2 = '\u24CD';
+	public static char player2 = '\u24C4';
 //	public static char player2 = 'o';
 	
 	public int x;

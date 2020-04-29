@@ -9,6 +9,13 @@ public class PlayGame {
 		Simlulation sim = new Simlulation();
 		System.out.println(sim);
 		sim.tick();
+		sim.tick();
+		sim.tick();
+		sim.tick();
+		sim.tick();
+		sim.tick();
+		sim.tick();
+		System.out.println("END OF THE GAME");
 		System.out.println(sim);
 
 
