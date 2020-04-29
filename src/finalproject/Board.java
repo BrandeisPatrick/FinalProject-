@@ -143,35 +143,34 @@ public class Board {
 			}
 			return true;
 		}
-		
+
 		//Removes enemy checker that has been eaten
-				public void removeChecker(int enemyxCoordinate, int enemyyCoordinate) {
-					for(Checker c : this.checkersInUse) {
-						if(c.getX() == enemyxCoordinate) {
-							if(c.getY() == enemyyCoordinate) {
-								this.checkersInUse.remove(c);
-							}
-						}
-					}
+		public void removeChecker(int enemyX, int enemyY) {
+			for(int i = 0; i < this.checkersInUse.size(); i++) {
+				if(checkersInUse.get(i).getX() == enemyX && checkersInUse.get(i).getY() == enemyY) {
+						this.checkersInUse.remove(checkersInUse.get(i));
 				}
+			}
+		}
+				
 				
 			//Checks if the Checker has reached the opposite side
 			//Adds a new KingChecker and removes Checker if it has
 				public void checkForKing() {
 					for(int i = 0; i < this.checkersInUse.size(); i++) {
-						if(!c.toString().equals("X") || !c.toString().equals("O")) {
-							if(c.getColor() == true) {
-								if (c.getX() == 8) {
-									KingChecker newChecker = new KingChecker(c.getX(), c.getY(), true, c.getNumber());
+						if(!this.checkersInUse.get(i).toString().equals("X") || !this.checkersInUse.get(i).toString().equals("O")) {
+							if(this.checkersInUse.get(i).getColor() == true) {
+								if (this.checkersInUse.get(i).getY() == 8) {
+									KingChecker newChecker = new KingChecker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), true, this.checkersInUse.get(i).getNumber());
 									this.checkersInUse.add(newChecker);
-									this.checkersInUse.remove(c);
+									this.checkersInUse.remove(this.checkersInUse.get(i));
 								}
 							}
 							else {
-								if(c.getX() == 1) {
-									KingChecker newChecker = new KingChecker(c.getX(), c.getY(), false, c.getNumber());
+								if(this.checkersInUse.get(i).getY() == 1) {
+									KingChecker newChecker = new KingChecker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), false, this.checkersInUse.get(i).getNumber());
 									this.checkersInUse.add(newChecker);
-									this.checkersInUse.remove(c);
+									this.checkersInUse.remove(this.checkersInUse.get(i));
 								}
 							}
 						}
