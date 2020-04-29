@@ -17,7 +17,7 @@ public class PlayGame {
 
 
 	/**
-		Player player1 = new Player(true);
+		Player player1 = new Player(true);.
 		Player player2 = new Player(false);
 
 		System.out.println(player1.checkers.get(0).canMove(board, 4, 5, board.checkersInUse));

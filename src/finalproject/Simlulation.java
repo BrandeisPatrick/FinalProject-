@@ -49,7 +49,7 @@ public class Simlulation {
 
     public void tick(){
         player1.tick(this.board.checkersInUse, this.board);
-//      player2.tick(this.board.checkersInUse, this.board);
+//      player2.tick(this.board.checkersInUse, this.board);.
     }
 
     @Override
