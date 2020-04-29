@@ -115,19 +115,18 @@ public class Player {
      * x and y coordinates are those that the player is trying to move to, 
   	 * the player depends on which players turn it is, the checker is the checker the player wants to move*/
   	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) { 
-  		System.out.println("Enetered canmove method");
   		if(c instanceof KingChecker) {
   			c = (KingChecker) c; 
   		}
   		
   		//check to see if it's an enemy
   		if(this.isEnemyColor(c)) {
-  			System.out.println("You cannot move the oppponent's checkers");
+  			System.out.println("Inavlid move: you cannot move the oppponent's checkers");
   			return false; 
   		}
   		//tests if coordinates are out of bounds
   		else if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
-  			System.out.println("The Coordinates you entered are out of bounds");
+  			System.out.println("Invalid move: the Coordinates you entered are out of bounds");
   			return false;
   			//tests if the move was backwards, **the move will always pass this test is it's a king checker
   		}else if(c.moveBackwards(yCoordinate, c.getY())){
@@ -135,7 +134,7 @@ public class Player {
   			return false;
   		//tests if the spot is taken
   		}else if(!board.spotOpen(xCoordinate, yCoordinate)){
-  			System.out.println("And that's an invalid move, the spot is taken");
+  			System.out.println("Invalid move: the spot is taken");
   			return false;
   			
   		//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
@@ -153,15 +152,13 @@ public class Player {
   					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
   							c.x - 1, c.y - 1, c.x - 1, c.y - 3, c.x - 2, c.y - 2, c.x + 1, c.y - 1,c.x + 1, c.y - 3, c.x + 2, c.y - 2);
   				}else {
-  					System.out.println("You have to move diagonally");
+  					System.out.println("Invalid move: you have to move diagonally");
   					return false;
   				}	
   		//The coordinates must be diagonal
   		}else {
-  			System.out.println("Entered diagonal loop");
   			//checks if the checker made a valid single jump over an enemy checker.
   			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
-  				System.out.println("Entered test 1");
   				return singleMoveValid(board, c.x + 1, c.y + 1);
   			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
   				return singleMoveValid(board, c.x - 1, c.y + 1);
@@ -172,7 +169,6 @@ public class Player {
   					
   				//checks if a double jump is valid
   			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
-  				System.out.println("Entered double test 1");
   				return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
   			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
   				return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);
@@ -209,11 +205,11 @@ public class Player {
   	  				board.removeChecker(enemyX, enemyY);
   	  				return true;
   	  				}else {
-  	  					System.out.println("Not a valid move");
+  	  					System.out.println("Invalid move: you can't jump over your own checkers");
   	  					return false;
   	  				}
   			}else {
-  				System.out.println("You can't move more than one space without eating an enemy checker");
+  				System.out.println("Invalid move: you can't move more than one space without eating an enemy checker");
   				return false;
   			}
     			
@@ -231,7 +227,7 @@ public class Player {
     			board.removeChecker(enemyX2,  enemyY2);
     			return true;
     		}else {
-    			System.out.println("Invalid move");
+    			System.out.println("Invalid move: this double jump move in invalid");
     			return false;
     		}
     	}
@@ -256,7 +252,7 @@ public class Player {
 			//valid move
 			return true;
 		}else {
-			System.out.println("Not a valid move");
+			System.out.println("Invalid move: this zigzag move is invalid");
 			return false;
 		}
 	}
