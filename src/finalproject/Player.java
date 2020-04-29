@@ -82,6 +82,7 @@ public class Player {
 		}
 		System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
 		board.findChecker(ix, iy).move(fx,fy);
+		board.checkForKing();
 		//System.out.println("after move checker");
 		board.cleanBoard();
 		board.fillBoard();
@@ -132,8 +133,12 @@ public class Player {
   			System.out.println("Invalid move: you cant move backwards as a regualar checker");
   			return false;
   		//tests if the spot is taken
-  		}else if(!board.spotOpen(xCoordinate, yCoordinate)) {
-  			System.out.println("Invalid move: the spot is taken");
+  		}else if(board.findChecker(xCoordinate, yCoordinate) != null) {
+  			if(board.findChecker(xCoordinate, yCoordinate).color != c.color){
+  				board.removeChecker(xCoordinate, yCoordinate);
+  				return true;
+			}
+  			System.out.println("And that's an invalid move, the spot is taken");
   			return false;
 
   		//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
