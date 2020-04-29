@@ -162,7 +162,7 @@ public class Player {
   		//The coordinates must be diagonal
   		}else {
   			System.out.println("Entered diagonal loop");
-  			//checks if the checker made a valid single jump over an enemy checker
+  			//checks if the checker made a valid single jump over an enemy checker.
   			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
   				System.out.println("Entered test 1");
   				return singleMoveValid(board, c.x + 1, c.y + 1);
