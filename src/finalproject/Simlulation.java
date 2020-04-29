@@ -38,10 +38,9 @@ public class Simlulation {
     public void printHeader(){
         System.out.println("This is checker game for two people;");
         System.out.println("Player X  will move first;");
-        System.out.println("Player O will move after Player X;");
-        System.out.println("In each move, select a checker by giving a coordinate;");
-        System.out.println("then give the destination coordinate, separated by a space");
-        System.out.println("For example E1 checker move to E2 position is \"E1 E2\"");
+        System.out.println("Player O  will move after;");
+        System.out.println("In each move, select a checker by giving a coordinate, then give the destination coordinate, separated by a space");
+        System.out.println("For example A1 checker move to B2 position is \"A1 B2\"");
         System.out.println();
     }
 
