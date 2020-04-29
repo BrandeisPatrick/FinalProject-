@@ -23,7 +23,7 @@ public class KingChecker extends Checker {
 		}
 	}
 	
-	//override: returns false every time because it's a king so it can move backward or forward
+	//override: returns false every time because it's a king so it can move backward or forward.
 	public boolean moveBackwards (int targetY, int originalY) {
 		return false;
 	}

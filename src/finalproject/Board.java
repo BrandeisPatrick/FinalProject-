@@ -10,7 +10,7 @@ import java.util.Iterator;
  * ArrayList<Checker> checkersInUse is all the checkers currently on the board at a given time
  * 
  * The board sets up all checkers at the start of the game. It also has a number of methods for 
- * finding and removing checkers on the board, and checking if spots are filled on the board
+ * finding and removing checkers on the board, and checking if spots are filled on the board.
  */
 
 public class Board {

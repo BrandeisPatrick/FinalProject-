@@ -18,7 +18,7 @@ public class Simlulation {
     	printHeader();
         setPlayer();
         board = new Board();
-        board.printCheckerCoord();
+       //board.printCheckerCoord();
     }
 
     //distribute the players and checkers to start the game
@@ -30,15 +30,15 @@ public class Simlulation {
             System.out.println("Please give a valid answer.");
             str  = sc.next();
         }
+        this.player1 = new Player(true);
+        this.player2 = new Player(false);
         if(str.equals("yes")){
-        	this.player1 = new Player(true);
-            this.player2 = new Player(false);
+        	System.out.println("You are " + this.player1);
+            System.out.println("The other person is " + this.player2);
         }else{
-        	this.player1 = new Player(false);
-            this.player2 = new Player(true);
+        	System.out.println("You are " + this.player2);
+            System.out.println("The other person is " + this.player1);
         }
-        System.out.println("You are " + this.player1);
-        System.out.println("The other person is " + this.player2);
         
     }
 
@@ -49,13 +49,24 @@ public class Simlulation {
         System.out.println("Player O  will move after;");
         System.out.println("In each move, select a checker by giving a coordinate, then give the destination coordinate, separated by a space");
         System.out.println("For example A1 checker move to B2 position is \"A1 B2\"");
+
         System.out.println();
     }
 
-    //Runs each player's tick method
-    public void tick(){
+
+
+    public boolean tick(){
         player1.tick(this.board.checkersInUse, this.board);
-//      player2.tick(this.board.checkersInUse, this.board);.
+        if(player1.allPiecesGone(this.board.checkersInUse) == true){
+        	System.out.println("Player "+ this.player1 + "has won!");
+        	return false;
+        }
+        player2.tick(this.board.checkersInUse, this.board);
+        if(player2.allPiecesGone(this.board.checkersInUse) == true){
+        	System.out.println("Player "+ this.player2 + "has won!");
+        	return false;
+        }
+        return true;
     }
 
     @Override

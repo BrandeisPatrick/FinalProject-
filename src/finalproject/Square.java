@@ -1,5 +1,9 @@
 package finalproject;
 
+/*
+ * This is dedicated to creating the appearance of the board
+ */
+
 public class Square {
     public static char RED = '\u2B1C';
 //    public static char RED = '\u25A1';
