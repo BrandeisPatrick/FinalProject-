@@ -68,18 +68,16 @@ public class Simlulation {
         
     }
 
-
-
     public boolean tick(){
         player1.tick(this.board.checkersInUse, this.board);
         if(player1.allPiecesGone(this.board.checkersInUse) == true){
-        	System.out.println("Player "+ this.player1 + "has won!");
+        	System.out.println(this.player1.getName() + " " + "has won!");
         	printGameStats();
         	return false;
         }
         player2.tick(this.board.checkersInUse, this.board);
         if(player2.allPiecesGone(this.board.checkersInUse) == true){
-        	System.out.println("Player "+ this.player2 + "has won!");
+        	System.out.println(this.player2.getName() + " " + "has won!");
         	printGameStats();
         	return false;
         }
@@ -88,8 +86,8 @@ public class Simlulation {
     
     public void printGameStats() {
     	System.out.println("Here are the game stats:");
-    	System.out.println("Player 1: " + this.player1.getMoves()+ " total moves");
-    	System.out.println("Player 1: " + this.player2.getMoves()+ " total moves");
+    	System.out.println(this.player1.getName() + ": " + this.player1.getMoves()+ " total moves");
+    	System.out.println(this.player2.getName() + ": " + this.player2.getMoves()+ " total moves");
     }
 
     public void board_ababcd(){

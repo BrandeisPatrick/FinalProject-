@@ -22,8 +22,13 @@ public class Player {
 	public boolean color; //true = x false = o.....
 	Map<String,Integer> letterToInt;
 	int numMoves;
+	String name;
 	
 	public Player(boolean color) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a name for this player");
+		String str  = sc.nextLine();
+        this.name = str;
 		this.color = color;
 		setLetterToInt();
 		this.numMoves = 0;
@@ -31,6 +36,7 @@ public class Player {
 
 	public Player() {
 		this.color = true;
+		this.name = "Player X";
 		this.numMoves = 0;
 	}
 	
@@ -56,11 +62,8 @@ public class Player {
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
-		if(color){
-			System.out.println("Player X's Turn ");
-		}else{
-			System.out.println("Player O's Turn ");
-		}
+		System.out.println(this.name + "'s Turn ");
+		
 		System.out.println("Your move  ");
 		String select = userinput.next();
 		String destination = userinput.next();
@@ -131,6 +134,10 @@ public class Player {
 	
 	public int getMoves() {
 		return this.numMoves;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 	/*checks if the checker can move to a spot on the board specified by the player

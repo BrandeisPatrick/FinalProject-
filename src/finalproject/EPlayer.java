@@ -11,6 +11,7 @@ public class EPlayer extends Player {
 
 	public EPlayer(boolean color) {
 		super(color);
+		this.name = "EPlayer";
 		// TODO Auto-generated constructor stub
 	}
 
@@ -23,7 +24,7 @@ public class EPlayer extends Player {
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 	
-		System.out.println("Player O's Turn ");
+		System.out.println("Computer's Turn ");
 		boolean keepGoing = true;
 		while(keepGoing) {
 			Checker testChecker = getRandomChecker(checkersInUse);
