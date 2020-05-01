@@ -1,9 +1,12 @@
 package finalproject;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
+/*
+ * This is an extension of Player that simulates an AI to play the user instead of another person
+ * This EPlayer will move randomly each turn
+ */
 public class EPlayer extends Player {
 
 	public EPlayer(boolean color) {
@@ -140,49 +143,49 @@ public class EPlayer extends Player {
   		}
   	}
   	
-  	//Override
-    	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
-  			if(board.findChecker(enemyX, enemyY) != null) {
-  				if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
-  	  				//valid move
-  	  				board.removeChecker(enemyX, enemyY);
-  	  				return true;
-  	  				}else {
-  	  					return false;
-  	  				}
-  			}else {
-  				return false;
-  			}
-    			
-    	}
-  	
-    	//override
-    	public boolean doubleMoveValid(Board board, int enemyX1, int enemyY1, int enemyX2, int enemyY2, int openX, int openY) {
-    		boolean firstJumpValid = singleMoveValid(board, enemyX1, enemyY1) && board.spotOpen(openX, openY);						
-    		boolean secondJumpValid = (singleMoveValid(board, enemyX2, enemyY2));
-    		if(firstJumpValid && secondJumpValid) { //if true, the move is valid)
-    			board.removeChecker(enemyX1,  enemyY1);
-    			board.removeChecker(enemyX2,  enemyY2);
-    			return true;
-    		}else {
-    			return false;
-    		}
-    	}
-
+  //Override
+	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
+			if(board.findChecker(enemyX, enemyY) != null) {
+				if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
+	  				//valid move
+	  				board.removeChecker(enemyX, enemyY);
+	  				return true;
+	  				}else {
+	  					return false;
+	  				}
+			}else {
+				return false;
+			}
+			
+	}
+	
 	//override
-	public boolean zigzagMoveValid(Board board, int xCoordinate, int yCoordinate,
-		int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
-		if(doubleMoveValid(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
-			board.removeChecker(xPt1, yPt1);
-			board.removeChecker(xPt2, yPt2);
-			return true;
-		}else if(doubleMoveValid(board, xPt3, yPt3, xPt4, yPt4, xMiddlePt34, yMiddlePt34)) {
-			board.removeChecker(xPt3, yPt3);
-			board.removeChecker(xPt4, yPt4);
-			//valid move
+	public boolean doubleMoveValid(Board board, int enemyX1, int enemyY1, int enemyX2, int enemyY2, int openX, int openY) {
+		boolean firstJumpValid = singleMoveValid(board, enemyX1, enemyY1) && board.spotOpen(openX, openY);						
+		boolean secondJumpValid = (singleMoveValid(board, enemyX2, enemyY2));
+		if(firstJumpValid && secondJumpValid) { //if true, the move is valid)
+			board.removeChecker(enemyX1,  enemyY1);
+			board.removeChecker(enemyX2,  enemyY2);
 			return true;
 		}else {
 			return false;
 		}
 	}
+
+//override
+public boolean zigzagMoveValid(Board board, int xCoordinate, int yCoordinate,
+	int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
+	if(doubleMoveValid(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
+		board.removeChecker(xPt1, yPt1);
+		board.removeChecker(xPt2, yPt2);
+		return true;
+	}else if(doubleMoveValid(board, xPt3, yPt3, xPt4, yPt4, xMiddlePt34, yMiddlePt34)) {
+		board.removeChecker(xPt3, yPt3);
+		board.removeChecker(xPt4, yPt4);
+		//valid move
+		return true;
+	}else {
+		return false;
+	}
+}
 }

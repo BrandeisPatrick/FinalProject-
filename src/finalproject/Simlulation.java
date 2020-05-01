@@ -47,7 +47,7 @@ public class Simlulation {
         
     }
 
-    //print header method at the start of the program
+    //print header method at the start of the program. Displays instructions if the person wants to see them
     public void printHeader() throws FileNotFoundException{
     	Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to this checkers game!");
@@ -74,14 +74,22 @@ public class Simlulation {
         player1.tick(this.board.checkersInUse, this.board);
         if(player1.allPiecesGone(this.board.checkersInUse) == true){
         	System.out.println("Player "+ this.player1 + "has won!");
+        	printGameStats();
         	return false;
         }
         player2.tick(this.board.checkersInUse, this.board);
         if(player2.allPiecesGone(this.board.checkersInUse) == true){
         	System.out.println("Player "+ this.player2 + "has won!");
+        	printGameStats();
         	return false;
         }
         return true;
+    }
+    
+    public void printGameStats() {
+    	System.out.println("Here are the game stats:");
+    	System.out.println("Player 1: " + this.player1.getMoves()+ " total moves");
+    	System.out.println("Player 1: " + this.player2.getMoves()+ " total moves");
     }
 
     public void board_ababcd(){

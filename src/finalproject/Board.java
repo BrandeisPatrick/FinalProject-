@@ -181,13 +181,15 @@ public class Board {
 		}
 	}
 	
-				
-	public static void main(String[] args){
-		Board board = new Board();
-		System.out.print(board);
+	
+	//debug purposes
+	/*public static void main(String[] args){
+	Board board = new Board();
+	System.out.print(board);
 	}
+	 
 
-	//debug purpose
+	
 	public void printCheckerCoord(){
 		StringBuilder builder = new StringBuilder();
 		for (Checker checker : this.checkersInUse){
@@ -195,4 +197,5 @@ public class Board {
 		}
 		System.out.println(builder);
 	}
+	*/
 }

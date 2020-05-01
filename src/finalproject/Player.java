@@ -10,6 +10,7 @@ import java.util.Scanner;
  * String[] letters and Map<String,Integer> letterToInt exist for translation of the board coordinates
  * into (x,y) coordinates
  * color is also associated with a player which links the player with its checkers
+ * numMoves will keep track of how many moves each player takes during the game
  * 
  * Player has a number of important methods including the tick method for each players turn
  * and the method to see if a certain move is valid. It also has smaller methods accosiated with a player
@@ -20,14 +21,17 @@ public class Player {
 	public String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 	public boolean color; //true = x false = o.....
 	Map<String,Integer> letterToInt;
+	int numMoves;
 	
 	public Player(boolean color) {
 		this.color = color;
 		setLetterToInt();
+		this.numMoves = 0;
 	}
 
 	public Player() {
 		this.color = true;
+		this.numMoves = 0;
 	}
 	
 	//translates a letter on the board to its corresponding integer 1-8
@@ -64,7 +68,7 @@ public class Player {
 
 		while(select.length()!= 2 || destination.length() != 2){
 			System.out.println("defensive programming, your input is invalid");
-			System.out.println("Your move// ");
+			System.out.println("Enter your move again// ");
 			select = userinput.next();
 			destination = userinput.next();
 		}
@@ -79,13 +83,12 @@ public class Player {
 		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy)) ){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
-			System.out.println("This move is invalid (either you are moving a null point or your move is illegal)");
-			System.out.println("Your move :)");
+			System.out.println("Your move  again :)");
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){
 				System.out.println("defensive programming, your input is invalid");
-				System.out.println("Your move// ");
+				System.out.println("Enter your move again// ");
 				select = userinput.next();
 				destination = userinput.next();
 			}
@@ -97,6 +100,7 @@ public class Player {
 			fx = Integer.parseInt(destination.substring(1));
 		}
 		//System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
+		this.numMoves++;
 		board.findChecker(ix, iy).move(fx,fy);
 		board.checkForKing();
 		//System.out.println("after move checker");
@@ -106,15 +110,6 @@ public class Player {
 	//	board.printCheckerCoord();
 	}
 	
-	//Tests if user input is valid or not
-	public static void userInputValid(String select, String destination, Scanner userinput) {
-		while(select.length()!= 2 || destination.length() != 2){
-			System.out.println("defensive programming, your input is invalid");
-			System.out.println("Your move// ");
-			select = userinput.next();
-			destination = userinput.next();
-		}
-	}
 	
 	//Tells if the checker is a checker of the opponents or not: returns true if it is, false if it's not
 	public boolean isEnemyColor(Checker checker) {
@@ -132,6 +127,10 @@ public class Player {
 			}
 		}
 		return true;
+	}
+	
+	public int getMoves() {
+		return this.numMoves;
 	}
 	
 	/*checks if the checker can move to a spot on the board specified by the player
@@ -221,7 +220,6 @@ public class Player {
   	}
  
   	
-  	
   	/*checks if a single jump move over an enemy is valid: returns false if 
      * either the there is no checker to eat or if the checker is not an enemy checker
      */
@@ -285,7 +283,7 @@ public class Player {
 	}
 
 
-	//testing code(static method)
+	/*testing code(static method)
 	public static void main(String[] args) {
 		Player pTrue = new Player(true);
 		Player pFalse = new Player(false);
@@ -294,6 +292,8 @@ public class Player {
 		System.out.println(pFalse);
 
 	}
+	*/
+  	
 
 }
 
