@@ -115,15 +115,8 @@ public class Board {
 		output.append("\n");
 		return output.toString();
 	}
-/**
-	public void printCheckersInUse() {
-		System.out.print("[(" + checkersInUse.get(0).printCoordinates());
-		for(int i = 1; i < checkersInUse.size(); i++) {
-			System.out.print(", " + checkersInUse.get(i).printCoordinates());
-		}
-		System.out.println("]");
-	}
- */
+
+	
 	//finds a checker with certain coordinates if it exists, given coordinates
 	public Checker findChecker(int xCoordinate, int yCoordinate) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
@@ -166,7 +159,7 @@ public class Board {
 	}
 				
 				
-	//Checks if the Checker has reached the opposite side
+	//Goes through all checkers to see if a any have reached the opposite side
 	//Adds a new KingChecker and removes Checker if it has
 	public void checkForKing() {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {

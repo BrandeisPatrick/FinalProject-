@@ -25,6 +25,14 @@ public class Checker {
 		this.number = number;
 		
 	}
+	
+	public Checker() {
+		this.x = 0;
+		this.y = 0;
+		this.color = false;
+		this.number = 0;
+		
+	}
 
 	
 	//moves checker from one spot to another

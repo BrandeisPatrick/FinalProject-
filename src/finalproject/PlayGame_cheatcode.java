@@ -1,10 +1,11 @@
 package finalproject;
+import java.io.FileNotFoundException;
 
 import java.util.Scanner;
 
 public class PlayGame_cheatcode {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException{
 
         System.out.println("Do you have cheatcode? Type it ");
 

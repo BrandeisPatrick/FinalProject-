@@ -1,9 +1,10 @@
 package finalproject;
 
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class Simlulation_blacksheep extends Simlulation {
-    public Simlulation_blacksheep() {
+    public Simlulation_blacksheep() throws FileNotFoundException{
         super();
     }
 

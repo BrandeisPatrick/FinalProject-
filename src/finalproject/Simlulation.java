@@ -1,5 +1,7 @@
 package finalproject;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /*
  * This class handles all the larger pictures things that 
@@ -14,7 +16,7 @@ public class Simlulation {
     public Player player2; //boolean false, o
     public Board board;
 
-    public Simlulation() {
+    public Simlulation() throws FileNotFoundException {
     	printHeader();
         setPlayer();
         board = new Board();
@@ -23,19 +25,22 @@ public class Simlulation {
 
     //distribute the players and checkers to start the game
     public void setPlayer() {
-        System.out.println("Would you like to be Player X ? (please reply yes or no)");
+        System.out.println("Would you like to play the computer(alterantive: another person)? (please reply yes or no)");
         Scanner sc = new Scanner(System.in);
         String str  = sc.next();
         while(!str.equals("yes") && !str.equals("no")){
-            System.out.println("Please give a valid answer.");
+            System.out.println("Please give a valid answer. Must type \"yes\" or \"no\"");
             str  = sc.next();
         }
-        this.player1 = new Player(true);
-        this.player2 = new Player(false);
+       
         if(str.equals("yes")){
+        	this.player1 = new Player(true);
+            this.player2 = new EPlayer(false);
         	System.out.println("You are " + this.player1);
-            System.out.println("The other person is " + this.player2);
+            System.out.println("The computer is " + this.player2);
         }else{
+        	 this.player1 = new Player(true);
+             this.player2 = new Player(false);
         	System.out.println("You are " + this.player2);
             System.out.println("The other person is " + this.player1);
         }
@@ -43,14 +48,24 @@ public class Simlulation {
     }
 
     //print header method at the start of the program
-    public void printHeader(){
-        System.out.println("This is checker game for two people;");
-        System.out.println("Player X  will move first;");
-        System.out.println("Player O  will move after;");
-        System.out.println("In each move, select a checker by giving a coordinate, then give the destination coordinate, separated by a space");
-        System.out.println("For example A1 checker move to B2 position is \"A1 B2\"");
-
-        System.out.println();
+    public void printHeader() throws FileNotFoundException{
+    	Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to this checkers game!");
+        System.out.println("Would you like to read the rules of the game? (yes or no)");
+        String str  = sc.next();
+        while(!str.equals("yes") && !str.equals("no")){
+            System.out.println("Please give a valid answer. Must type \"yes\" or \"no\"");
+            str  = sc.next();
+        }
+        if(str.equals("yes")) {
+        	Scanner readThis = new Scanner(new File("Instructions.txt"));
+        	while(readThis.hasNextLine()) {
+        		System.out.println(readThis.nextLine());
+        	}
+        }else {
+        	System.out.println("Ok. Proceeding to game");
+        }
+        
     }
 
 
