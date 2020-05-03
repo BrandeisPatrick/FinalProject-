@@ -44,7 +44,7 @@ public class EPlayer extends Player {
 		int checkerNum = 1;
 		TreeSet<MoveSet> movesets = new TreeSet<MoveSet>();
 
-		for(int itr = 1; itr <= 1000; itr++){
+		for(int itr = 1; itr <= 100000; itr++){
 			Checker testChecker = getRandomChecker(checkersInUse);
 			checkerNum++;
 			for(int i = 0; i <= 8; i++){
@@ -63,13 +63,14 @@ public class EPlayer extends Player {
 			}
 			//System.out.println(intToLetter.get(iy)+ix + " " + intToLetter.get(fy)+fx);
 		}
+		/**
 		System.out.println("[debug] movesets.size() : " + movesets.size());
 		System.out.println("[debug] possible moves : ");
 		for(MoveSet n : movesets){
 			System.out.println(n);
 		}
 		System.out.println();
-
+		*/
 		MoveSet optimizedMove = movesets.last();
 		int iy = optimizedMove.getIy();
 		int ix = optimizedMove.getIx();

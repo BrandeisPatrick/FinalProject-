@@ -95,7 +95,7 @@ public class Player {
 
 
 		while(select.length()!= 2 || destination.length() != 2){
-			System.out.println("defensive programming, your input is invalid");
+			System.out.println("your input is invalid");
 			System.out.println("Enter your move again// ");
 			select = userinput.next();
 			destination = userinput.next();
@@ -115,7 +115,7 @@ public class Player {
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){
-				System.out.println("defensive programming, your input is invalid");
+				System.out.println("your input is invalid");
 				System.out.println("Enter your move again// ");
 				select = userinput.next();
 				destination = userinput.next();
