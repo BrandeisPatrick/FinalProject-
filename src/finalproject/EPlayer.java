@@ -9,9 +9,13 @@ public class EPlayer extends Player {
 	private HashMap<Integer, String> intToLetter;
 
 	public EPlayer(boolean color) {
-		super(color);
-		this.name = "EPlayer";
-
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a name for this computer ");
+		String str  = sc.nextLine();
+        this.name = str;
+		this.color = color;
+		setLetterToInt();
+		this.numMoves = 0;
 		setIntToLetter();
 		// TODO Auto-generated constructor stub
 	}
@@ -83,7 +87,7 @@ public class EPlayer extends Player {
 		System.out.println(board);
 	}
 	
-	//Chooses a random checker from checkersInUse
+	//Chooses a random checker from checkersInUse that is of its own color, not of enemy color
 	public Checker getRandomChecker(ArrayList<Checker> checkersInUse) {
 		Random r = new Random();
 		boolean keepGoing = true;
