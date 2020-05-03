@@ -29,9 +29,9 @@ public class Player {
 	 * Constructor for Player
 	 * @param color is the identity for Player X (true) or Player O (false)
 	 */
-	public Player(boolean color) {
+	public Player(boolean color, int playerNum) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a name for this player");
+		System.out.println("Enter a name for player " + playerNum);
 		String str  = sc.nextLine();
         this.name = str;
 		this.color = color;
@@ -83,7 +83,7 @@ public class Player {
 	 * @param checkersInUse the ArraryList of Checkers
 	 * @param board			the Class has checkersInUse,
 	 *                      board also is responsible for displaying all the checkers.
-	 *                      after everyturn, board reassign the checker to the correct Square based on the checker's coordinate
+	 *                      after every turn, board reassign the checker to the correct Square based on the checker's coordinate
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
@@ -143,8 +143,6 @@ public class Player {
 	 * @param checker	is the checker selected
 	 * @return if it is a checker of the opponents
 	 */
-
-
 	//Tells if the checker is a checker of the opponents or not: returns true if it is, false if it's not
 	public boolean isEnemyColor(Checker checker) {
 		if(checker.getColor() == this.color) {
@@ -188,7 +186,7 @@ public class Player {
 	 * @return			   if this checker can move
 	 */
 	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) {
-  		//System.out.println("Enetered canmove method");
+  		//System.out.println("Entered canMove method");
   		if(c instanceof KingChecker) {
   			c = (KingChecker) c; 
   		}
@@ -362,7 +360,7 @@ public class Player {
 	/**
 	 * testing code(static method)
 	 * @return
-	 */
+	 
 	public static void main(String[] args) {
 		Player pTrue = new Player(true);
 		Player pFalse = new Player(false);
@@ -371,7 +369,7 @@ public class Player {
 		System.out.println(pFalse);
 
 	}
-
+	 */
 
 
 }

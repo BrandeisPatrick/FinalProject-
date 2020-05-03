@@ -39,13 +39,15 @@ public class Simlulation {
         }
 
         if(str.equals("yes")){
-        	this.player1 = new Player(true);
+        	boolean playComp = true;
+        	this.player1 = new Player(true, 1);
             this.player2 = new EPlayer(false);
         	System.out.println("You are " + this.player1);
             System.out.println("The computer is " + this.player2);
         }else{
-        	 this.player1 = new Player(true);
-             this.player2 = new Player(false);
+        	boolean playComp = false;
+        	 this.player1 = new Player(true, 1);
+             this.player2 = new Player(false, 2);
         	System.out.println("You are " + this.player2);
             System.out.println("The other person is " + this.player1);
         }
