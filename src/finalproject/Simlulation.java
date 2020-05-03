@@ -16,11 +16,10 @@ public class Simlulation {
     public Player player2; //boolean false, o
     public Board board;
 
-    public Simlulation() throws FileNotFoundException {
     /**
      * Constructor
      */
-    public Simlulation() {
+    public Simlulation() throws FileNotFoundException {
     	printHeader();
         setPlayer();
         board = new Board();
@@ -56,7 +55,8 @@ public class Simlulation {
     /**
      * print header method at the start of the program
      */
-    public void printHeader(){
+    /**
+    public void printHeader() throws FileNotFoundException {
         System.out.println("This is checker game for two people;");
         System.out.println("Player X  will move first;");
         System.out.println("Player O  will move after;");
@@ -64,8 +64,9 @@ public class Simlulation {
         System.out.println("For example A1 checker move to B2 position is \"A1 B2\"");
 
         System.out.println();
+     */
     //print header method at the start of the program. Displays instructions if the person wants to see them
-    public void printHeader() throws FileNotFoundException{
+    public void printHeader( ) throws FileNotFoundException {
     	Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to this checkers game!");
         System.out.println("Would you like to read the rules of the game? (yes or no)");
