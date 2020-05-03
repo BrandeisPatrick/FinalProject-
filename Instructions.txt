@@ -1,0 +1,24 @@
+Checkers Instructions
+
+Checkers is a game for two players. Each player has 12 of their own checkers that are 
+arranged on opposite sides of the board start. Checkers can only move diagonally through
+the squares, not up, down, or side to side. As a regular checker, you can't move backwards either
+
+The goal of the game is to eat all of your opponents checkers first. 
+You can do this by jumping over an opponents checker. Here are the rules for jumping:
+1. The spot you are jumping to must be open
+2. You can only jump over an enemy checker, not your own checkers
+3. You can do a double jump move if there are two enemy checkers aligned in a row, with empty
+spaces between them, so that your checker can jump to the empty spaces.
+4. you can also do a zig zag move in which after the first jump, you jump perpendicularly over another
+enemy checker. Same rules for double jump apply here.
+5. If one of you checkers makes it to the opposite side of the board, it will be crowned a king.
+Kings can move both forwards and backwards on the board
+
+How to use this simulation:
+When it's your turn, enter the spot of the checker you want to move and the spot you want
+to move it to, seperated by a space.
+For example: to move a checker from C1 to D2, type "C1 D2"
+
+
+Ok, lets play!

@@ -10,7 +10,8 @@ import java.util.Scanner;
  * String[] letters and Map<String,Integer> letterToInt exist for translation of the board coordinates
  * into (x,y) coordinates
  * color is also associated with a player which links the player with its checkers
- * 
+ * numMoves will keep track of how many moves each player takes during the game
+ *
  * Player has a number of important methods including the tick method for each players turn
  * and the method to see if a certain move is valid. It also has smaller methods accosiated with a player
  * like a method to tell is a checker is an enemy checker or not and a method to see if all the .
@@ -20,14 +21,22 @@ public class Player {
 	public String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 	public boolean color; //true = x false = o.....
 	Map<String,Integer> letterToInt;
+	int numMoves;
+	String name;
+
 
 	/**
 	 * Constructor for Player
 	 * @param color is the identity for Player X (true) or Player O (false)
 	 */
 	public Player(boolean color) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a name for this player");
+		String str  = sc.nextLine();
+        this.name = str;
 		this.color = color;
 		setLetterToInt();
+		this.numMoves = 0;
 	}
 
 	/**
@@ -35,6 +44,8 @@ public class Player {
 	 */
 	public Player() {
 		this.color = true;
+		this.name = "Player X";
+		this.numMoves = 0;
 	}
 
 	/**
@@ -76,11 +87,8 @@ public class Player {
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
-		if(color){
-			System.out.println("Player X's Turn ");
-		}else{
-			System.out.println("Player O's Turn ");
-		}
+		System.out.println(this.name + "'s Turn ");
+
 		System.out.println("Your move  ");
 		String select = userinput.next();
 		String destination = userinput.next();
@@ -88,11 +96,10 @@ public class Player {
 
 		while(select.length()!= 2 || destination.length() != 2){
 			System.out.println("defensive programming, your input is invalid");
-			System.out.println("Your move// ");
+			System.out.println("Enter your move again// ");
 			select = userinput.next();
 			destination = userinput.next();
 		}
-
 
 		int iy = letterToInt.get(select.substring(0,1));  // expect: E would be mapped to 1
 		int ix = Integer.parseInt(select.substring(1));
@@ -104,16 +111,16 @@ public class Player {
 		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy)) ){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
-			System.out.println("This move is invalid (either you are moving a null point or your move is illegal)");
-			System.out.println("Your move :)");
+			System.out.println("Your move  again :)");
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){
-				System.out.println("your input is invalid");
-				System.out.println("Your move ");
+				System.out.println("defensive programming, your input is invalid");
+				System.out.println("Enter your move again// ");
 				select = userinput.next();
 				destination = userinput.next();
 			}
+
 			iy = letterToInt.get(select.substring(0,1));  // expect: E would be mapped to 1
 			ix = Integer.parseInt(select.substring(1));
 
@@ -121,6 +128,7 @@ public class Player {
 			fx = Integer.parseInt(destination.substring(1));
 		}
 		//System.out.println("[debug] coordinate = " + ix + " " + iy  + " " + fx  + " " + fy);
+		this.numMoves++;
 		board.findChecker(ix, iy).move(fx,fy);
 		board.checkForKing();
 		//System.out.println("after move checker");
@@ -135,6 +143,9 @@ public class Player {
 	 * @param checker	is the checker selected
 	 * @return if it is a checker of the opponents
 	 */
+
+
+	//Tells if the checker is a checker of the opponents or not: returns true if it is, false if it's not
 	public boolean isEnemyColor(Checker checker) {
 		if(checker.getColor() == this.color) {
 			return false;
@@ -157,6 +168,20 @@ public class Player {
 		}
 		return true;
 	}
+	
+	public int getMoves() {
+		return this.numMoves;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	/*checks if the checker can move to a spot on the board specified by the player
+     * x and y coordinates are those that the player is trying to move to,
+  	 * the player depends on which players turn it is, the checker is the checker the player wants to move*/
+  	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) {
+  		//System.out.println("Entered canMove method");
 
 	/**
 	 * checks if the checker can move to a spot on the board specified by the player
@@ -176,20 +201,20 @@ public class Player {
   		
   		//check to see if it's an enemy
   		if(this.isEnemyColor(c)) {
-  			System.out.println("You cannot move the oppponent's checkers");
+  			System.out.println("Invalid move: You cannot move the oppponent's checkers");
   			return false; 
   		}
   		//tests if coordinates are out of bounds
   		else if(xCoordinate < 1 || xCoordinate > 8 || yCoordinate < 1 || yCoordinate > 8) {
-  			System.out.println("The Coordinates you entered are out of bounds");
+  			System.out.println("Invalid move: The Coordinates you entered are out of bounds");
   			return false;
   			//tests if the move was backwards, **the move will always pass this test is it's a king checker
   		}else if(c.moveBackwards(yCoordinate, c.getY())){
-  			System.out.println("Invalid move: you cant move backwards as a regualar checker");
+  			System.out.println("Invalid move: You cant move backwards as a regualar checker");
   			return false;
   		//tests if the spot is taken
   		}else if(!board.spotOpen(xCoordinate, yCoordinate)){
-  			System.out.println("And that's an invalid move, the spot is taken");
+  			System.out.println("Invalid move: Yhat spot is taken");
   			return false;
   			
   		//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
@@ -207,7 +232,7 @@ public class Player {
   					return zigzagMoveValid(board, xCoordinate,  yCoordinate,
   							c.x - 1, c.y - 1, c.x - 1, c.y - 3, c.x - 2, c.y - 2, c.x + 1, c.y - 1,c.x + 1, c.y - 3, c.x + 2, c.y - 2);
   				}else {
-  					System.out.println("You have to move diagonally");
+  					System.out.println("Invalid move: You have to move in a straight line, you must move diagonally");
   					return false;
   				}	
   		//The coordinates must be diagonal
@@ -215,7 +240,7 @@ public class Player {
   			//System.out.println("Entered diagonal loop");
   			//checks if the checker made a valid single jump over an enemy checker.
   			if(xCoordinate == c.x + 2 && yCoordinate == c.y + 2) {
-  				System.out.println("Entered test 1");
+  				//System.out.println("Entered test 1");
   				return singleMoveValid(board, c.x + 1, c.y + 1);
   			}else if(xCoordinate == c.x - 2 && yCoordinate == c.y + 2) {
   				return singleMoveValid(board, c.x - 1, c.y + 1);
@@ -226,7 +251,7 @@ public class Player {
   					
   				//checks if a double jump is valid
   			}else if(xCoordinate == c.x + 4 && yCoordinate == c.y + 4) {
-  				System.out.println("Entered double test 1");
+  				//System.out.println("Entered double test 1");
   				return doubleMoveValid(board, c.x + 1, c.y + 1, c.x + 3, c.y + 3, c.x + 2, c.y + 2);
   			}else if(xCoordinate == c.x - 4 && yCoordinate == c.y + 4) {
   				return doubleMoveValid(board, c.x - 1, c.y + 1, c.x - 3, c.y + 3, c.x - 2, c.y + 2);
@@ -262,6 +287,10 @@ public class Player {
 	 * @param enemyY
 	 * @return
 	 */
+
+  	/*checks if a single jump move over an enemy is valid: returns false if
+     * either the there is no checker to eat or if the checker is not an enemy checker
+     */
     	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
   			if(board.findChecker(enemyX, enemyY) != null) {
   				if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
@@ -291,7 +320,7 @@ public class Player {
     			board.removeChecker(enemyX2,  enemyY2);
     			return true;
     		}else {
-    			System.out.println("Invalid move");
+    			System.out.println("Invalid double jump move");
     			return false;
     		}
     	}
@@ -333,12 +362,13 @@ public class Player {
 			//valid move
 			return true;
 		}else {
-			System.out.println("Not a valid move");
+			System.out.println("Invalid zigzag move");
 			return false;
 		}
 	}
 
 
+	/*testing code(static method)
 	/**
 	 * testing code(static method)
 	 * @return
@@ -352,6 +382,8 @@ public class Player {
 		System.out.println(pFalse);
 
 	}
+	*/
+
 
 }
 

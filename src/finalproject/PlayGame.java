@@ -1,6 +1,8 @@
 package finalproject;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.File;
 
 /**
  * This is the class where the game is played. It's suppose to be a super simple class that implements 
@@ -8,7 +10,7 @@ import java.util.ArrayList;
  */
 public class PlayGame {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException{
 		Simlulation sim = new Simlulation();
 		System.out.println(sim);
 		while(sim.tick() == true) {	
