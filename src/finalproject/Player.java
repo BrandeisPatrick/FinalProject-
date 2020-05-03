@@ -36,7 +36,7 @@ public class Player {
         this.name = str;
 		this.color = color;
 		setLetterToInt();
-		this.numMoves = 0;
+		this.numMoves = 1;
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class Player {
 	public Player() {
 		this.color = true;
 		this.name = "Player X";
-		this.numMoves = 0;
+		this.numMoves = 1;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class Player {
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
-		System.out.println(this.name + "'s Turn ");
+		System.out.println(this.name + "'s Turn   (move: " + this.numMoves + ")");
 
 		System.out.println("Your move  ");
 		String select = userinput.next();

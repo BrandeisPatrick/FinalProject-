@@ -15,7 +15,7 @@ public class EPlayer extends Player {
         this.name = str;
 		this.color = color;
 		setLetterToInt();
-		this.numMoves = 0;
+		this.numMoves = 1;
 		setIntToLetter();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,7 +39,7 @@ public class EPlayer extends Player {
 	 * then resets the board to show the new arrangement
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
-		System.out.printf("%s's Turn \n",this.name);
+		System.out.println(this.name + "'s Turn    (move: " + this.numMoves + ")");
 		//boolean keepGoing = true;
 		int checkerNum = 1;
 		TreeSet<MoveSet> movesets = new TreeSet<MoveSet>();
@@ -85,6 +85,7 @@ public class EPlayer extends Player {
 		board.checkForKing();
 		board.cleanBoard();
 		board.fillBoard();
+		this.numMoves++;
 		System.out.println(board);
 	}
 	
