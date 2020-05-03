@@ -39,7 +39,7 @@ public class EPlayer extends Player {
 	 * then resets the board to show the new arrangement
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
-		System.out.println("Computer's Turn ");
+		System.out.printf("%s's Turn \n",this.name);
 		//boolean keepGoing = true;
 		int checkerNum = 1;
 		TreeSet<MoveSet> movesets = new TreeSet<MoveSet>();
@@ -64,10 +64,11 @@ public class EPlayer extends Player {
 			//System.out.println(intToLetter.get(iy)+ix + " " + intToLetter.get(fy)+fx);
 		}
 		System.out.println("[debug] movesets.size() : " + movesets.size());
-		System.out.println("[debug] possible moves");
+		System.out.println("[debug] possible moves : ");
 		for(MoveSet n : movesets){
 			System.out.println(n);
 		}
+		System.out.println();
 
 		MoveSet optimizedMove = movesets.last();
 		int iy = optimizedMove.getIy();
@@ -76,7 +77,7 @@ public class EPlayer extends Player {
 		int fx = optimizedMove.getFx();
 		Checker c = optimizedMove.getChecker();
 
-		System.out.println("Computers' move: ");
+		System.out.printf("%s' move: \n", this.name);
 		System.out.println(intToLetter.get(iy)+ix + " " + intToLetter.get(fy)+fx);
 		super.canMove(fx, fy, board, c);
 		board.findChecker(c).move(fx,fy);
