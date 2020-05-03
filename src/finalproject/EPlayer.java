@@ -1,46 +1,59 @@
 package finalproject;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Random;
+import java.util.*;
 
-/*
+/**
  * This is an extension of Player that simulates an AI to play the user instead of another person
  * This EPlayer will move randomly each turn
  */
 public class EPlayer extends Player {
+	private HashMap<Integer, String> intToLetter;
 
 	public EPlayer(boolean color) {
 		super(color);
 		this.name = "EPlayer";
+
+		setIntToLetter();
 		// TODO Auto-generated constructor stub
 	}
 
 	public EPlayer() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	/*executes the player's turn: asks for input until given valid input moves the players checkers
+
+	/**
+	 * Convert Int to Letters
+	 */
+	public void setIntToLetter() {
+		this.intToLetter = new HashMap<Integer,String>();
+		for(int i = 1; i <= 8; i++){
+			intToLetter.put(i,this.letters[i-1]);
+		}
+	}
+
+	/**executes the player's turn: asks for input until given valid input moves the players checkers
 	 * then resets the board to show the new arrangement
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
-	
 		System.out.println("Computer's Turn ");
 		boolean keepGoing = true;
 		while(keepGoing) {
 			Checker testChecker = getRandomChecker(checkersInUse);
 			for(int i = 0; i <= 8; i++) {
 				for(int j = 0; j <= 8; j++) {
-					if(canMove(j,i,board, testChecker)) {
-						keepGoing = false;
-						int iy = testChecker.getY();
-						int ix = testChecker.getX();
+					if (keepGoing) {
+						if (canMove(j, i, board, testChecker)) {
+							keepGoing = false;
+							int iy = testChecker.getY();
+							int ix = testChecker.getX();
 
-						int fy = i;
-						int fx = j;	
-						
-						board.findChecker(ix, iy).move(fx,fy);
+							int fy = i;
+							int fx = j;
+							board.findChecker(ix, iy).move(fx, fy);
+							System.out.println("Computers' move: ");
+							System.out.println(intToLetter.get(iy)+ix + " " + intToLetter.get(fy)+fx);
 						}
 					}
+				}
 				}
 			}
 		
