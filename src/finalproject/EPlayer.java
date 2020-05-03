@@ -3,11 +3,16 @@ import java.util.*;
 
 /**
  * This is an extension of Player that simulates an AI to play the user instead of another person
- * This EPlayer will move randomly each turn
+ * This EPlayer evaluate thousands of possible move, store the outcome of all possible moves in the TreeSet movesets.
+ * Then It will pick the best move from the TreeSet movesets
  */
 public class EPlayer extends Player {
 	private HashMap<Integer, String> intToLetter;
 
+	/**
+	 * Constructor for Ai
+	 * @param color
+	 */
 	public EPlayer(boolean color) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a name for this computer ");
@@ -35,7 +40,9 @@ public class EPlayer extends Player {
 	}
 
 	/**
-	 * executes the player's turn: asks for input until given valid input moves the players checkers
+	 * executes the computer's turn
+	 * This EPlayer evaluate thousands of possible move, store the outcome of all possible moves in the TreeSet movesets.
+	 * Then It will pick the best move from the TreeSet movesets
 	 * then resets the board to show the new arrangement
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
@@ -89,8 +96,12 @@ public class EPlayer extends Player {
 		this.numMoves++;
 		System.out.println(board);
 	}
-	
-	//Chooses a random checker from checkersInUse that is of its own color, not of enemy color
+
+	/**
+	 * Chooses a random checker from checkersInUse that is of its own color, not of enemy color
+	 * @param checkersInUse
+	 * @return a random checker
+	 */
 	public Checker getRandomChecker(ArrayList<Checker> checkersInUse) {
 		Random r = new Random();
 		boolean keepGoing = true;
