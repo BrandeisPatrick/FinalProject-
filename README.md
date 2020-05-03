@@ -6,6 +6,7 @@ Checkers game!
 
 The program allows for two players: either two people or one person and an AI
 - You can name both players, including the computer
+- The game board will be displayed on the console and the whole game will be played here
 
 You can have instructions displayed before you start playing if you don't know how to play, but basically:
 - to move, type the coordinates of the checker you want to move follow by a space follow by the coordiante of the space you want to move the checker to   (ex. type: "C1 D2")
