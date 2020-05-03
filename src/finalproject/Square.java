@@ -1,6 +1,6 @@
 package finalproject;
 
-/*
+/**
  * This is dedicated to creating the appearance of the board
  */
 
@@ -14,15 +14,26 @@ public class Square {
     public int x;
     public int y;
 
+    /**
+     * Constructor
+     */
     public Square(){
-
     }
 
+    /**
+     * set the coordinate of the Square
+     * @param x
+     * @param y
+     */
     public void setCoordinates(int x, int y){
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Store a Checker
+     * @param checker
+     */
     public void setChecker(Checker checker) {
         this.checker = checker;
     }
@@ -31,6 +42,10 @@ public class Square {
         return checker;
     }
 
+    /**
+     * Return a String value based on if this Square stores a checker and the Square's coordinate
+     * @return
+     */
     @Override
     public String toString() {
         if(this.checker != null){  //check if this hold a checker

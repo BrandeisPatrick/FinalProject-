@@ -1,7 +1,7 @@
 package finalproject;
 import java.util.Scanner;
 
-/*
+/**
  * This class handles all the larger pictures things that 
  * involve multiple other classes. It does jobs related to setting up the game and running it.
  * 
@@ -14,6 +14,9 @@ public class Simlulation {
     public Player player2; //boolean false, o
     public Board board;
 
+    /**
+     * Constructor
+     */
     public Simlulation() {
     	printHeader();
         setPlayer();
@@ -21,7 +24,9 @@ public class Simlulation {
        //board.printCheckerCoord();
     }
 
-    //distribute the players and checkers to start the game
+    /**
+     * distribute the players and checkers to start the game
+     */
     public void setPlayer() {
         System.out.println("Would you like to be Player X ? (please reply yes or no)");
         Scanner sc = new Scanner(System.in);
@@ -42,7 +47,9 @@ public class Simlulation {
         
     }
 
-    //print header method at the start of the program
+    /**
+     * print header method at the start of the program
+     */
     public void printHeader(){
         System.out.println("This is checker game for two people;");
         System.out.println("Player X  will move first;");
@@ -54,7 +61,10 @@ public class Simlulation {
     }
 
 
-
+    /**
+     * process players' movement in each turn
+     * @return if this the END OF THE GAME
+     */
     public boolean tick(){
         player1.tick(this.board.checkersInUse, this.board);
         if(player1.allPiecesGone(this.board.checkersInUse) == true){
@@ -69,10 +79,17 @@ public class Simlulation {
         return true;
     }
 
+    /**
+     *  Initialize a Board board_ababcd
+     *  Used for CheatCode
+     */
     public void board_ababcd(){
         this.board = new Board_ababcd();
     }
 
+    /**
+     * @return board.toString
+     */
     @Override
     public String toString() {
         return board.toString();

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-/*
+/**
  * Player represents a player in the game, either x or o. 
  * String[] letters and Map<String,Integer> letterToInt exist for translation of the board coordinates
  * into (x,y) coordinates
@@ -20,17 +20,27 @@ public class Player {
 	public String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
 	public boolean color; //true = x false = o.....
 	Map<String,Integer> letterToInt;
-	
+
+	/**
+	 * Constructor for Player
+	 * @param color is the identity for Player X (true) or Player O (false)
+	 */
 	public Player(boolean color) {
 		this.color = color;
 		setLetterToInt();
 	}
 
+	/**
+	 * Default Constructor
+	 */
 	public Player() {
 		this.color = true;
 	}
-	
-	//translates a letter on the board to its corresponding integer 1-8
+
+	/**
+	 * set up a Map which can translates a letter on the board to its corresponding integer 1-8
+	 * for example ( A to 1 )
+	 */
 	public void setLetterToInt() {
 		this.letterToInt = new HashMap<String,Integer>();
 		for(int i = 1; i <= 8; i++){
@@ -38,6 +48,10 @@ public class Player {
 		}
 	}
 
+	/**
+	 * toString
+	 * @return Player Identity
+	 */
 	public String toString() {
 		if(this.color == true) {
 			return "Player X";
@@ -46,9 +60,19 @@ public class Player {
 		}
 	}
 
-	/*executes the player's turn: asks for input until given valid input
-	 * moves the players checkers
+	/*
+	 *
 	 * resets the board to show the new arrangement
+	 */
+
+	/**
+	 * executes the player's turn: asks for input until given valid input
+	 * process the player's instruction for moving checkers
+	 *
+	 * @param checkersInUse the ArraryList of Checkers
+	 * @param board			the Class has checkersInUse,
+	 *                      board also is responsible for displaying all the checkers.
+	 *                      after everyturn, board reassign the checker to the correct Square based on the checker's coordinate
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
 		Scanner userinput = new Scanner(System.in);
@@ -105,10 +129,12 @@ public class Player {
 		System.out.println(board);
 	//	board.printCheckerCoord();
 	}
-	
-	
-	
-	//Tells if the checker is a checker of the opponents or not: returns true if it is, false if it's not
+
+	/**
+	 * This method tells if the checker is a checker of the opponents or not: returns true if it is, false if it's not
+	 * @param checker	is the checker selected
+	 * @return if it is a checker of the opponents
+	 */
 	public boolean isEnemyColor(Checker checker) {
 		if(checker.getColor() == this.color) {
 			return false;
@@ -116,7 +142,13 @@ public class Player {
 		return true;
 	}
 
-	//tells if all pieces of a player is gone: returns false if there are pieces still left, false if all gone
+
+	/**
+	 * This method tells if all pieces of a player is gone: returns false if there are pieces still left, false if all gone
+	 * Used as an indicator of the End of the game
+	 * @param checkersInUse   ArrayList of Checkers
+	 * @return				  if all pieces are gone
+	 */
 	public boolean allPiecesGone(ArrayList<Checker> checkersInUse) {
 		for(Checker c : checkersInUse) {
 			if(c.getColor() == this.color) {
@@ -125,11 +157,18 @@ public class Player {
 		}
 		return true;
 	}
-	
-	/*checks if the checker can move to a spot on the board specified by the player
-     * x and y coordinates are those that the player is trying to move to, 
-  	 * the player depends on which players turn it is, the checker is the checker the player wants to move*/
-  	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) { 
+
+	/**
+	 * checks if the checker can move to a spot on the board specified by the player
+	 * x and y coordinates are those that the player is trying to move to,
+	 * the player depends on which players turn it is, the checker is the checker the player wants to move
+	 * @param xCoordinate
+	 * @param yCoordinate  is the destination coordinate
+	 * @param board        is the board Class
+	 * @param c			   is the Checker selected
+	 * @return			   if this checker can move
+	 */
+	public boolean canMove(int xCoordinate, int yCoordinate, Board board, Checker c) {
   		//System.out.println("Enetered canmove method");
   		if(c instanceof KingChecker) {
   			c = (KingChecker) c; 
@@ -212,11 +251,17 @@ public class Player {
   		}
   	}
  
-  	
-  	
-  	/*checks if a single jump move over an enemy is valid: returns false if 
-     * either the there is no checker to eat or if the checker is not an enemy checker
-     */
+
+
+	/**
+	 * This method checks if a single jump move over an enemy is valid: returns false if either the there is no checker to eat or if the checker is not an enemy checker
+	 * you can do jump only if you are jumping over an enemy
+	 *
+	 * @param board
+	 * @param enemyX
+	 * @param enemyY
+	 * @return
+	 */
     	public boolean singleMoveValid(Board board, int enemyX, int enemyY) {
   			if(board.findChecker(enemyX, enemyY) != null) {
   				if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
@@ -251,13 +296,30 @@ public class Player {
     		}
     	}
 
-	
-	/*checks to see if a zigzag move is valid: xPt and yPt are the coordinates
-	 * of the two enemy checkers that the checker wants to jump over
+
+	/**
+	 * checks to see if a Zigzag Move is valid:
+	 *
+	 * Different from straightDoubleMove() because for this move, you have to check two conditions because the checker could get to the target spot in two ways vs. only one in straightDoubleMove()
+	 *
+	 * @param board
+	 * @param xCoordinate
+	 * @param yCoordinate
+	 * @param xPt1
+	 * @param yPt1
+	 * @param xPt2
+	 * @param yPt2
+	 * @param xMiddlePt12
+	 * @param yMiddlePt12
+	 * @param xPt3
+	 * @param yPt3
+	 * @param xPt4
+	 * @param yPt4
+	 * @param xMiddlePt34
+	 * @param yMiddlePt34
+	 * xPt and yPt are the coordinates of the two enemy checkers that the checker wants to jump over
 	 * xMiddle and yMiddle are the coordinate3s of the point in between, you want to make sure that space is open
-	 * 
-	 * Different from straightDoubleMove() because for this move, you have to check two conditions because the
-	 * checker could get to the target spot in two ways vs. only one in straightDoubleMove()
+	 * @return	if you can move
 	 */
 	public boolean zigzagMoveValid(Board board, int xCoordinate, int yCoordinate,
 		int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
@@ -277,7 +339,11 @@ public class Player {
 	}
 
 
-	//testing code(static method)
+	/**
+	 * testing code(static method)
+	 * @return
+	 */
+
 	public static void main(String[] args) {
 		Player pTrue = new Player(true);
 		Player pFalse = new Player(false);

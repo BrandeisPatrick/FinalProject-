@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
+/**
  * This class is basically the board for the checker game. 
  * String[] letters is the array that allows for conversion between the board coordinates and x, y coordinates
  * Square[][] board is what the simulation prints to build the board on the console
@@ -25,7 +25,11 @@ public class Board {
 
 	}
 
-	//create board and give each Square coordinates
+	/**
+	 * This method initialize the Board as 8X8 Squares and assign each individual Square coordinates
+	 * It set 12 checkers for each player
+	 * It calls the fillBoard method.
+	 */
 	public void setBoard() {
 		this.board = new Square[8][8];
 		for(int i = 1; i <= 8; i++){  	  // vertical
@@ -39,7 +43,12 @@ public class Board {
 		fillBoard();
 	}
 
-	//sets up the checkers on the board initially to begin the game
+	/**
+	 * This method sets up the checkers on the board.
+	 * @param color is the identity for Player X (true) or Player O (false)
+	 * @param checkersInUse is the ArrayList contains all the checkers
+	 * @param checkerNum  is the number of Checkers will be added
+	 */
 	public void setCheckers(boolean color, ArrayList<Checker> checkersInUse, int checkerNum) {
 		if(color == true) { //player x
 			color = true;
@@ -74,8 +83,12 @@ public class Board {
 			
 		}
 	}
-	
-	//Fills the the board array with checkers so that the board can be displayed correctly on console
+
+	/**
+	 *  This method assign(put) each checker to the Square which has the same coordinate as each Checker
+	 *  This method is often called
+	 *  After one player's move have been processed and the all the Checkers' (in ArraryList checkerInUse) coordinates have been updated,
+	 */
 	public void fillBoard(){
 		Iterator<Checker> itr  = this.checkersInUse.iterator();
 		while(itr.hasNext()){
@@ -87,7 +100,10 @@ public class Board {
 		}
 	}
 
-	//makes sure there are no duplicate checkers left on the board each time a move has been made
+	/**
+	 *  This method create a new board consist of 8X8 Squares
+	 *  It is called after one player's move, before the fillBoard().
+	 */
 	public void cleanBoard(){
 		for(int i = 1; i <= 8; i++){  	  // vertical
 			for(int j = 1; j <= 8; j++){  // horizontal
@@ -97,7 +113,10 @@ public class Board {
 		}
 	}
 
-	//Inspired from Koolgee0's code to print A B E C E D on one side of the board
+	/**
+	 * This method prints the Board including Squares and Checkers
+	 * @return String representation of the Board.
+	 */
 	public String toString() {
 		StringBuilder output = new StringBuilder();
 		output.append("\n   1 2  3 4  5 6  7 8\n");
@@ -124,7 +143,12 @@ public class Board {
 		System.out.println("]");
 	}
  */
-	//finds a checker with certain coordinates if it exists, given coordinates
+	/**
+	 * This method finds a checker with certain coordinates if it exists, given coordinates
+	 * @param xCoordinate  coordinates of the checker
+	 * @param yCoordinate
+	 * @return				the checker
+	 */
 	public Checker findChecker(int xCoordinate, int yCoordinate) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
 			if(xCoordinate == checkersInUse.get(i).getX() && yCoordinate == checkersInUse.get(i).getY()) {
@@ -133,9 +157,13 @@ public class Board {
 		}
 		return null;
 	}
-	
-	
-	//finds a checker with certain coordinates if it exists, given a checker
+
+
+	/**
+	 * This methods finds a checker in ArraryList<E></> checkerInUse
+	 * @param checker	input Checker (with Coordinates info)
+	 * @return			a checker in ArraryList<E></> checkerInUse which has the same coordinates as the input Checker
+	 */
 		public Checker findChecker(Checker checker) {
 			for(int i = 0; i < this.checkersInUse.size(); i++) {
 				if(checker.getX() == checkersInUse.get(i).getX() && checker.getY() == checkersInUse.get(i).getY()) {
@@ -144,8 +172,13 @@ public class Board {
 			}
 			return null;
 		}
-		
-	//checks if a spot is already taken or it's open
+
+	/**
+	 * This methods checks if a spot is already taken or it's open
+	 * @param xCoordinate 	Coordinates of the Spot
+	 * @param yCoordinate
+	 * @return	is a Boolean if this spot is taken
+	 */
 	public boolean spotOpen(int xCoordinate, int yCoordinate) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
 			if(this.checkersInUse.get(i).getX() == xCoordinate &&
@@ -156,7 +189,11 @@ public class Board {
 		return true;
 	}
 
-	//Removes enemy checker that has been eaten
+	/**
+	 * Removes enemy checker that has been eaten from the ArrayList checkerInUse
+	 * @param enemyX
+	 * @param enemyY	The coordinate of the enemy checker
+	 */
 	public void removeChecker(int enemyX, int enemyY) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
 			if(checkersInUse.get(i).getX() == enemyX && checkersInUse.get(i).getY() == enemyY) {
@@ -165,9 +202,11 @@ public class Board {
 		}
 	}
 				
-				
-	//Checks if the Checker has reached the opposite side
-	//Adds a new KingChecker and removes Checker if it has
+
+	/**
+	 * This method checks if the Checker has reached the opposite side ( of the board)
+	 * Adds a new KingChecker and removes (regular) Checker if it has
+	 */
 	public void checkForKing() {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
 			if(!this.checkersInUse.get(i).toString().equals("X") || !this.checkersInUse.get(i).toString().equals("O")) {
@@ -187,14 +226,20 @@ public class Board {
 			}
 		}
 	}
-	
-				
+
+
+	/**
+	 * Testing Class
+	 * @param args
+	 */
 	public static void main(String[] args){
 		Board board = new Board();
 		System.out.print(board);
 	}
 
-	//debug purpose
+	/**
+	 * Testing Class
+	 */
 	public void printCheckerCoord(){
 		StringBuilder builder = new StringBuilder();
 		for (Checker checker : this.checkersInUse){
