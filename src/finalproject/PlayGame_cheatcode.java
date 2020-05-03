@@ -2,6 +2,10 @@ package finalproject;
 
 import java.util.Scanner;
 
+/**
+ * This a PlayGame version allows to use CheatCode
+ * This will initialize different version of Game based on the cheatCode you input.
+ */
 public class PlayGame_cheatcode {
 
     public static void main(String[] args) {

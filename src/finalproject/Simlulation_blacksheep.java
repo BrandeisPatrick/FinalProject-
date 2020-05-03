@@ -7,7 +7,11 @@ public class Simlulation_blacksheep extends Simlulation {
         super();
     }
 
-
+    /**
+     * This a cheat code version improved from the original version
+     * This version will allow Play X to move randomly 0 to 3 steps "higher risk higher reward"
+     * @return
+     */
     @Override
     public boolean tick(){
         Random rand = new Random();

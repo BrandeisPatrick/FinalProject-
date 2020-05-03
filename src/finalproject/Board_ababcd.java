@@ -7,6 +7,15 @@ public class Board_ababcd extends Board {
         super();
     }
 
+    /**
+     * This Board is prepared for CheatCode
+     * This new Board will set KingCheckers for player X at the start of the game
+     *
+     *
+     * @param color is the identity for Player X (true) or Player O (false)
+     * @param checkersInUse is the ArrayList contains all the checkers
+     * @param checkerNum  is the number of Checkers will be added
+     */
     @Override
     public void setCheckers(boolean color, ArrayList<Checker> checkersInUse, int checkerNum) {
         if(color == true) { //player x
