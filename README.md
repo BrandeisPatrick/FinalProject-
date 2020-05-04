@@ -10,6 +10,7 @@ The program allows for two players: either two people or one person and an AI
 
 You can have instructions displayed before you start playing if you don't know how to play, but basically:
 - to move, type the coordinates of the checker you want to move follow by a space follow by the coordiante of the space you want to move the checker to   (ex. type: "C1 D2")
+- KingCheckers are indicated by a capital "X" or "O", can move backwards, and also have two lives 
 
 If you are playing the AI, it will automatically take its turn each turn. There is an algorithm involving the Moveset class that compares thousands of moves to find the best one 
 
