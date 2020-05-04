@@ -56,7 +56,7 @@ public class EPlayer extends Player {
 			checkerNum++;
 			for(int i = 0; i <= 8; i++){
 				for(int j = 0; j <= 8; j++) {
-					if(canMove_computer(j, i, board, testChecker)){
+					if(canMove_computer(j, i, board, testChecker) == true){
 						int iy = testChecker.getY();
 						int ix = testChecker.getX();
 
@@ -233,7 +233,11 @@ public class EPlayer extends Player {
 // In this method, no enemy Checkers are removed, because we are just trying to find potential moves
 public boolean zigzagMoveValid_computer(Board board, int xCoordinate, int yCoordinate,
 	int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
-	if(doubleMoveValid_computer(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
+	//tests if coordinates are out of bounds
+	if(xMiddlePt12 < 1 || xMiddlePt12 > 8 || yMiddlePt34 < 1 || yMiddlePt34 > 8) {
+		return false;
+	}
+	else if(doubleMoveValid_computer(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
 		//board.removeChecker(xPt1, yPt1);
 		//board.removeChecker(xPt2, yPt2);
 		return true;
