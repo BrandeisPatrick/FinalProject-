@@ -111,7 +111,7 @@ public class Player {
 		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy)) ){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
-			System.out.println("Your move  again :)");
+			System.out.println("Enter a vaild move :)");
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){

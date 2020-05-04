@@ -147,7 +147,7 @@ public class Board {
 	 * This method finds a checker with certain coordinates if it exists, given coordinates
 	 * @param xCoordinate  coordinates of the checker
 	 * @param yCoordinate
-	 * @return				the checker
+	 * @return the checker or null
 	 */
 	public Checker findChecker(int xCoordinate, int yCoordinate) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {

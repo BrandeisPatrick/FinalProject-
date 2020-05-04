@@ -54,7 +54,7 @@ public class Checker {
 
 	/**
 	 * the corresponding Char value
- 	 * @return
+ 	 * @return 
 	 */
 	public String toString(){
 		if (color) {
@@ -94,7 +94,7 @@ public class Checker {
 	 * checks if its a backwards move based on what the color field of the player is.
 	 * @param targetY
 	 * @param originalY
-	 * @return
+	 * @return boolean to show whether its true or false
 	 */
 	public boolean moveBackwards(int targetY, int originalY) {
 		if (this.color) { //true = x, false = o

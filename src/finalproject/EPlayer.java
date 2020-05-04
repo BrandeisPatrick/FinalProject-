@@ -89,7 +89,11 @@ public class EPlayer extends Player {
 		System.out.println(board);
 	}
 	
-	//Chooses a random checker from checkersInUse that is of its own color, not of enemy color
+	/**
+	 * Chooses a random checker from checkersInUse that is of its own color, not of enemy color
+	 * @param checkersInUse
+	 * @return the checker that was chosen randomly 
+	 */
 	public Checker getRandomChecker(ArrayList<Checker> checkersInUse) {
 		Random r = new Random();
 		boolean keepGoing = true;
@@ -189,7 +193,8 @@ public class EPlayer extends Player {
   		}
   	}
   	
-  // In this method, no enemy Checkers are removed, because we are just trying to find potential moves
+  
+   //In this method, no enemy Checkers are removed, because we are just trying to find potential moves
 	public boolean singleMoveValid_computer(Board board, int enemyX, int enemyY) {
 			if(board.findChecker(enemyX, enemyY) != null) {
 				if(this.isEnemyColor(board.findChecker(enemyX, enemyY))) {
