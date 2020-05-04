@@ -95,7 +95,7 @@ public class Player {
 
 
 		while(select.length()!= 2 || destination.length() != 2){
-			System.out.println("defensive programming, your input is invalid");
+			System.out.println("your input is invalid");
 			System.out.println("Enter your move again// ");
 			select = userinput.next();
 			destination = userinput.next();
@@ -111,11 +111,14 @@ public class Player {
 		while(board.findChecker(ix, iy) == null || !canMove(fx, fy, board, board.findChecker(ix, iy)) ){  //can be simplified
 			//there is no Checker or the move is mistaken.
 			//needs to enter an new move.
+			if(board.findChecker(ix, iy) == null){		
+				System.out.println("Invalid move: There's no checker in tha spot to move");
+			}
 			System.out.println("Enter a vaild move :)");
 			select = userinput.next();
 			destination = userinput.next();
 			while(select.length()!= 2 || destination.length() != 2){
-				System.out.println("defensive programming, your input is invalid");
+				System.out.println("your input is invalid");
 				System.out.println("Enter your move again// ");
 				select = userinput.next();
 				destination = userinput.next();
@@ -206,7 +209,7 @@ public class Player {
   			return false;
   		//tests if the spot is taken
   		}else if(!board.spotOpen(xCoordinate, yCoordinate)){
-  			System.out.println("Invalid move: Yhat spot is taken");
+  			System.out.println("Invalid move: That spot is taken");
   			return false;
   			
   		//if the move keeps the y or x coordinate the same, the move is horizontal or vertical, not diagonal
@@ -340,7 +343,10 @@ public class Player {
 	 */
 	public boolean zigzagMoveValid(Board board, int xCoordinate, int yCoordinate,
 		int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
-		if(doubleMoveValid(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
+		if(xMiddlePt12 < 1 || xMiddlePt12 > 8 || yMiddlePt34 < 1 || yMiddlePt34 > 8) {
+			return false;
+		}
+		else if(doubleMoveValid(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
 			board.removeChecker(xPt1, yPt1);
 			board.removeChecker(xPt2, yPt2);
 			return true;

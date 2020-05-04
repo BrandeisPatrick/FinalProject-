@@ -3,11 +3,16 @@ import java.util.*;
 
 /**
  * This is an extension of Player that simulates an AI to play the user instead of another person
- * This EPlayer will move randomly each turn
+ * This EPlayer evaluate thousands of possible move, store the outcome of all possible moves in the TreeSet movesets.
+ * Then It will pick the best move from the TreeSet movesets
  */
 public class EPlayer extends Player {
 	private HashMap<Integer, String> intToLetter;
 
+	/**
+	 * Constructor for Ai
+	 * @param color
+	 */
 	public EPlayer(boolean color) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a name for this computer ");
@@ -35,7 +40,9 @@ public class EPlayer extends Player {
 	}
 
 	/**
-	 * executes the player's turn: asks for input until given valid input moves the players checkers
+	 * executes the computer's turn
+	 * This EPlayer evaluate thousands of possible move, store the outcome of all possible moves in the TreeSet movesets.
+	 * Then It will pick the best move from the TreeSet movesets
 	 * then resets the board to show the new arrangement
 	 */
 	public void tick(ArrayList<Checker> checkersInUse, Board board){
@@ -44,12 +51,12 @@ public class EPlayer extends Player {
 		int checkerNum = 1;
 		TreeSet<MoveSet> movesets = new TreeSet<MoveSet>();
 
-		for(int itr = 1; itr <= 1000; itr++){
+		for(int itr = 1; itr <= 100000; itr++){
 			Checker testChecker = getRandomChecker(checkersInUse);
 			checkerNum++;
 			for(int i = 0; i <= 8; i++){
 				for(int j = 0; j <= 8; j++) {
-					if(canMove_computer(j, i, board, testChecker)){
+					if(canMove_computer(j, i, board, testChecker) == true){
 						int iy = testChecker.getY();
 						int ix = testChecker.getX();
 
@@ -63,13 +70,14 @@ public class EPlayer extends Player {
 			}
 			//System.out.println(intToLetter.get(iy)+ix + " " + intToLetter.get(fy)+fx);
 		}
+		/**
 		System.out.println("[debug] movesets.size() : " + movesets.size());
 		System.out.println("[debug] possible moves : ");
 		for(MoveSet n : movesets){
 			System.out.println(n);
 		}
 		System.out.println();
-
+		*/
 		MoveSet optimizedMove = movesets.last();
 		int iy = optimizedMove.getIy();
 		int ix = optimizedMove.getIx();
@@ -226,7 +234,11 @@ public class EPlayer extends Player {
 // In this method, no enemy Checkers are removed, because we are just trying to find potential moves
 public boolean zigzagMoveValid_computer(Board board, int xCoordinate, int yCoordinate,
 	int xPt1, int yPt1, int xPt2, int yPt2, int xMiddlePt12, int yMiddlePt12, int xPt3, int yPt3, int xPt4, int yPt4, int xMiddlePt34, int yMiddlePt34){
-	if(doubleMoveValid_computer(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
+	//tests if coordinates are out of bounds
+	if(xMiddlePt12 < 1 || xMiddlePt12 > 8 || yMiddlePt34 < 1 || yMiddlePt34 > 8) {
+		return false;
+	}
+	else if(doubleMoveValid_computer(board, xPt1, yPt1, xPt2, yPt2, xMiddlePt12, yMiddlePt12)) {
 		//board.removeChecker(xPt1, yPt1);
 		//board.removeChecker(xPt2, yPt2);
 		return true;

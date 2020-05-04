@@ -191,14 +191,40 @@ public class Board {
 
 	/**
 	 * Removes enemy checker that has been eaten from the ArrayList checkerInUse
+	 * Turns KingChecker into normal checker if eaten
 	 * @param enemyX
 	 * @param enemyY	The coordinate of the enemy checker
 	 */
 	public void removeChecker(int enemyX, int enemyY) {
 		for(int i = 0; i < this.checkersInUse.size(); i++) {
-			if(checkersInUse.get(i).getX() == enemyX && checkersInUse.get(i).getY() == enemyY) {
-				this.checkersInUse.remove(checkersInUse.get(i));
+			if(this.checkersInUse.get(i).getX() == enemyX && this.checkersInUse.get(i).getY() == enemyY) {
+				if(isKing(this.checkersInUse.get(i)) == false) {
+					this.checkersInUse.remove(this.checkersInUse.get(i));
+				}
+				else {
+					if(this.checkersInUse.get(i).getColor() == true) {
+						Checker newChecker = new Checker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), true, this.checkersInUse.get(i).getNumber());
+						this.checkersInUse.add(newChecker);
+						this.checkersInUse.remove(this.checkersInUse.get(i));
+					
+					}else {
+						Checker newChecker = new Checker(this.checkersInUse.get(i).getX(), this.checkersInUse.get(i).getY(), false, this.checkersInUse.get(i).getNumber());
+						this.checkersInUse.add(newChecker);
+						this.checkersInUse.remove(this.checkersInUse.get(i));
+
+					}
+				}
+				
 			}
+		}
+	}
+	
+	public boolean isKing(Checker c) {
+		if(c.toString().equals("X") == true || c.toString().equals("O") == true){
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 				

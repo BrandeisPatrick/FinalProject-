@@ -13,7 +13,8 @@ spaces between them, so that your checker can jump to the empty spaces.
 4. you can also do a zig zag move in which after the first jump, you jump perpendicularly over another
 enemy checker. Same rules for double jump apply here.
 5. If one of you checkers makes it to the opposite side of the board, it will be crowned a king.
-Kings can move both forwards and backwards on the board
+Kings can move both forwards and backwards on the board. They also have two lives and will turn into 
+a regular checker if an enemy checker jumps over them.
 
 How to use this simulation:
 When it's your turn, enter the spot of the checker you want to move and the spot you want
